@@ -91,7 +91,7 @@ idea_round:
 
     # t2 = mul(t2, *key_ptr++)
     mv a0, t4
-    lh a1, 12(a2)    # Load next key
+    mv a1, s4    # Load next key
     jal mul_no_zero
     mv t4, a0       # Store the result in t4
 
@@ -102,7 +102,7 @@ idea_round:
 
     # t1 = mul(t1, *key_ptr++)
     mv a0, t5
-    lh a1, 14(a2)    # Load next key
+    mv a1, s5    # Load next key
     jal mul_no_zero
     mv t5, a0       # Store the result in t5
 
@@ -126,10 +126,10 @@ idea_round:
     mv t2, t4
 
     # Store the results to blk_out_ptr (using a1 as the pointer might cause confusion. Instead, use a1 as intended)
-    sh t0, 0(a1)
-    sh t1, 2(a1)
-    sh t2, 4(a1)
-    sh t3, 6(a1)
+    sh t0, 0(a4)
+    sh t1, 2(a4)
+    sh t2, 4(a4)
+    sh t3, 6(a4)
 
     lw ra, 0(sp)
     addi sp, sp, 4
@@ -138,7 +138,7 @@ idea_round:
 main:
     # Set up addresses for blk_in, blk_out, and keys
     la a0, blk_in
-    la a1, blk_out
+    la a4, blk_out
     la a2, keys
 
     # Call idea_round
@@ -146,7 +146,7 @@ main:
 
     # Setup for printing the results
     li t0, 0     # loop index
-    la a1, blk_out
+    la a4, blk_out
     li t1, 4     # Load immediate value 4 into t1
 
 print_loop:
@@ -154,13 +154,13 @@ print_loop:
     bge t0, t1, end
 
     # Print blk_out[t0]
-    lh a0, 0(a1)  # load halfword to a0
+    lh a0, 0(a4)  # load halfword to a0
     li a7, 34     # print integer
     ecall
 
     # Update index and pointer for the next iteration
     addi t0, t0, 1
-    addi a1, a1, 2
+    addi a4, a4, 2
     j print_loop
 
 end:
