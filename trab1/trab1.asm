@@ -38,7 +38,7 @@ end:
     li a7, 10     # exit syscall
     ecall
 
-mul_no_zero:
+mul_main:
     # Treat 0 as 2^16
     beqz a0, mul_a0_zero
     beqz a1, mul_a1_zero
@@ -154,7 +154,7 @@ idea_round:
     # word1 = mul(word1, *key_ptr++);
     mv a0, t0
     mv a1, s0
-    jal mul_no_zero
+    jal mul_main
     mv t0, a0
 
     # Prepare mask register for LSW16
@@ -171,7 +171,7 @@ idea_round:
     # word4 = mul(word4, *key_ptr++);
     mv a0, t3
     mv a1, s3
-    jal mul_no_zero
+    jal mul_main
     mv t3, a0
     
     # t2 = word1 ^ word3
@@ -180,7 +180,7 @@ idea_round:
     # t2 = mul(t2, *key_ptr++)
     mv a0, t4
     mv a1, s4    # Load next key
-    jal mul_no_zero
+    jal mul_main
     mv t4, a0       # Store the result in t4
 
     # t1 = LSW16(t2 + (word2 ^ word4))
@@ -191,7 +191,7 @@ idea_round:
     # t1 = mul(t1, *key_ptr++)
     mv a0, t5
     mv a1, s5    # Load next key
-    jal mul_no_zero
+    jal mul_main
     mv t5, a0       # Store the result in t5
 
     # t2 = LSW16(t1 + t2)
