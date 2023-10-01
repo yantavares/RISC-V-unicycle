@@ -6,7 +6,38 @@ keys:    .half 1, 2, 3, 4, 5, 6
 
 .text
 
-j main
+main:
+    # Set up addresses for blk_in, blk_out, and keys
+    la a0, blk_in
+    la a4, blk_out
+    la a2, keys
+
+    # Call idea_round
+    jal idea_round
+
+    # Setup for printing the results
+    li t0, 0     # loop index
+    la a4, blk_out
+    li t1, 4     # Load immediate value 4 into t1
+
+print_loop:
+    # Check if we've printed all four values
+    bge t0, t1, end
+
+    # Print blk_out[t0]
+    lh a0, 0(a4)  # load halfword to a0
+    li a7, 34     # print integer
+    ecall
+
+    # Update index and pointer for the next iteration
+    addi t0, t0, 1
+    addi a4, a4, 2
+    j print_loop
+
+end:
+    # Exit the program
+    li a7, 10     # exit syscall
+    ecall
 
 mul_no_zero:
     # Input: a0 = x, a1 = y
@@ -135,35 +166,3 @@ idea_round:
     addi sp, sp, 4
     ret
 
-main:
-    # Set up addresses for blk_in, blk_out, and keys
-    la a0, blk_in
-    la a4, blk_out
-    la a2, keys
-
-    # Call idea_round
-    jal idea_round
-
-    # Setup for printing the results
-    li t0, 0     # loop index
-    la a4, blk_out
-    li t1, 4     # Load immediate value 4 into t1
-
-print_loop:
-    # Check if we've printed all four values
-    bge t0, t1, end
-
-    # Print blk_out[t0]
-    lh a0, 0(a4)  # load halfword to a0
-    li a7, 34     # print integer
-    ecall
-
-    # Update index and pointer for the next iteration
-    addi t0, t0, 1
-    addi a4, a4, 2
-    j print_loop
-
-end:
-    # Exit the program
-    li a7, 10     # exit syscall
-    ecall
