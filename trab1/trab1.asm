@@ -2,7 +2,6 @@
 blk_in:  .half 0, 1, 2, 3
 blk_out: .half 0, 0, 0, 0
 keys:    .half 1, 2, 3, 4, 5, 6
-#Test
 
 .text
 
