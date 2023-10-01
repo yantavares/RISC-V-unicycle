@@ -39,17 +39,67 @@ end:
     ecall
 
 mul_no_zero:
-    # Input: a0 = x, a1 = y
-    # Output: a0 = result
-    mul a2, a0, a1     # a2 = x * y
-    beqz a2, mul_zero
+    # Treat 0 as 2^16
+    beqz a0, mul_a0_zero
+    beqz a1, mul_a1_zero
 
-    # a3 = p >> 16
-    srli a3, a2, 16    
-    # a0 = y - x
-    sub a0, a2, a3     
-    blt a2, a0, mul_add
+    # Multiply a0 and a1
+    mul a0, a0, a1
+    
+    # Check if the result is zero
+    beqz a0, mul_result_zero
+    
+    # Return the lower 16 bits of the multiplication result
+    li a3, -1          # a3 will have all bits set (i.e., 0xffffffff in 32-bit)
+    slli a3, a3, 16    # Shift left to make the top 16 bits 0
+    srli a3, a3, 16    # Shift right to make a 16-bit mask, now a3 = 0x0000FFFF
+    and a0, a0, a3     # Ensure result is 16-bits
     ret
+
+mul_a0_zero:
+    # Replace a0 with 2^16 and multiply
+    li a0, 1
+    slli a0, a0, 16
+    mul a0, a0, a1
+    j mul_check_result
+
+mul_a1_zero:
+    # Replace a1 with 2^16 and multiply
+    li a1, 1
+    slli a1, a1, 16
+    mul a0, a0, a1
+
+mul_check_result:
+    # Check if the result is zero (this is possible due to the modulo 2^16 + 1 arithmetic)
+    beqz a0, mul_result_zero
+
+    # Return the lower 16 bits of the multiplication result
+    li a3, -1          # a3 will have all bits set (i.e., 0xffffffff in 32-bit)
+    slli a3, a3, 16    # Shift left to make the top 16 bits 0
+    srli a3, a3, 16    # Shift right to make a 16-bit mask, now a3 = 0x0000FFFF
+    and a0, a0, a3     # Ensure result is 16-bits
+    ret
+
+mul_result_zero:
+    # For the special case where the multiplication result is 0,
+    # the result is replaced with (2^16 - (a0 + a1) mod 2^16).
+
+    # Add a0 and a1
+    add a0, a0, a1
+
+    # Subtract from 2^16
+    li a3, 1
+    slli a3, a3, 16    # a3 = 2^16
+    sub a0, a3, a0     # a0 = 2^16 - (a0 + a1)
+
+    # Ensure result is 16-bits
+    li a3, -1          # a3 will have all bits set (i.e., 0xffffffff in 32-bit)
+    slli a3, a3, 16    # Shift left to make the top 16 bits 0
+    srli a3, a3, 16    # Shift right to make a 16-bit mask, now a3 = 0x0000FFFF
+    and a0, a0, a3     # Ensure result is 16-bits
+
+    ret
+
 
 mul_zero:
     # Load 65537 into a3
@@ -57,22 +107,30 @@ mul_zero:
     slli a3, a3, 16
     addi a3, a3, 1
     
+    # Calculate result = (65537 - a0 - a1)
     sub a0, a3, a0
     sub a0, a0, a1
-
+    
     # Load 0xffff into a3
-    li a3, -1          # a3 will have all bits set (i.e., 0xffffffff in 32-bit, which is equivalent to 0xffff in 16-bit)
+    li a3, -1          # a3 will have all bits set (i.e., 0xffffffff in 32-bit)
+    slli a3, a3, 16    # Shift left to make the top 16 bits 0
+    srli a3, a3, 16    # Shift right to make a 16-bit mask, now a3 = 0x0000FFFF
     and a0, a0, a3     # Ensure result is 16-bits
+    
     ret
+
 
 mul_add:
-    # Load 65537 into a3
-    li a3, 1
-    slli a3, a3, 16
-    addi a3, a3, 1
+    # If a0 < 2^16+1 subtract it, otherwise add it
+    li a3, 0x10001
+    blt a0, a3, mul_add_sub
+    sub a0, a0, a3
+    ret
 
+mul_add_sub:
     add a0, a0, a3
     ret
+
 
 
 idea_round:
