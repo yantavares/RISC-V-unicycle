@@ -5,6 +5,9 @@ keys:    .half 1, 2, 3, 4, 5, 6
 #Test
 
 .text
+
+j main
+
 mul_no_zero:
     # Input: a0 = x, a1 = y
     # Output: a0 = result
@@ -43,6 +46,9 @@ mul_add:
 
 
 idea_round:
+    addi sp, sp, -4
+    sw ra, 0(sp)
+
     # Load words from blk_in_ptr into t0-t3
     lh t0, 0(a0)
     lh t1, 2(a0)
@@ -60,7 +66,7 @@ idea_round:
     # word1 = mul(word1, *key_ptr++);
     mv a0, t0
     mv a1, s0
-    call mul_no_zero
+    jal mul_no_zero
     mv t0, a0
 
     # Prepare mask register for LSW16
@@ -77,7 +83,7 @@ idea_round:
     # word4 = mul(word4, *key_ptr++);
     mv a0, t3
     mv a1, s3
-    call mul_no_zero
+    jal mul_no_zero
     mv t3, a0
     
     # t2 = word1 ^ word3
@@ -86,7 +92,7 @@ idea_round:
     # t2 = mul(t2, *key_ptr++)
     mv a0, t4
     lh a1, 12(a2)    # Load next key
-    call mul_no_zero
+    jal mul_no_zero
     mv t4, a0       # Store the result in t4
 
     # t1 = LSW16(t2 + (word2 ^ word4))
@@ -97,7 +103,7 @@ idea_round:
     # t1 = mul(t1, *key_ptr++)
     mv a0, t5
     lh a1, 14(a2)    # Load next key
-    call mul_no_zero
+    jal mul_no_zero
     mv t5, a0       # Store the result in t5
 
     # t2 = LSW16(t1 + t2)
@@ -125,6 +131,8 @@ idea_round:
     sh t2, 4(a1)
     sh t3, 6(a1)
 
+    lw ra, 0(sp)
+    addi sp, sp, 4
     ret
 
 main:
@@ -134,7 +142,7 @@ main:
     la a2, keys
 
     # Call idea_round
-    call idea_round
+    jal idea_round
 
     # Setup for printing the results
     li t0, 0     # loop index
