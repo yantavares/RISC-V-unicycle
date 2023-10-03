@@ -27,6 +27,8 @@ print_loop:
     lh a0, 0(a4)  # load halfword to a0
     li a7, 34     # print integer
     ecall
+    
+    # Print space
 
     # Update index and pointer for the next iteration
     addi t0, t0, 1
@@ -130,8 +132,6 @@ mul_add:
 mul_add_sub:
     add a0, a0, a3
     ret
-
-
 
 idea_round:
     addi sp, sp, -4
