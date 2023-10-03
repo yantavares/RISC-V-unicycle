@@ -10,15 +10,13 @@ space_char: .byte ' '
 main:
     # Set up addresses for blk_in, blk_out, and keys
     la a0, blk_in
-    la a4, blk_out
     la a2, keys
 
-    # Call idea_round
+    # Call idea_round (Remebmer that result is stored in a1)
     jal idea_round
 
     # Setup for printing the results
     li t0, 0     # loop index
-    la a4, blk_out
     li t1, 4     # Load immediate value 4 into t1
 
 print_loop:
@@ -26,7 +24,7 @@ print_loop:
     bge t0, t1, end
 
     # Print blk_out[t0]
-    lh a0, 0(a4)  # load halfword to a0
+    lh a0, 0(a1)  # load halfword to a0
     li a7, 1      # print integer
     ecall
 
@@ -37,7 +35,7 @@ print_loop:
 
     # Update index and pointer for the next iteration
     addi t0, t0, 1
-    addi a4, a4, 2
+    addi a1, a1, 2
     j print_loop
 
 end:
@@ -221,10 +219,12 @@ idea_round:
     mv t2, t4
 
     # Store the results to blk_out_ptr
-    sh t0, 0(a4)
-    sh t1, 2(a4)
-    sh t2, 4(a4)
-    sh t3, 6(a4)
+    la a1, blk_out
+
+    sh t0, 0(a1)
+    sh t1, 2(a1)
+    sh t2, 4(a1)
+    sh t3, 6(a1)
 
     lw ra, 0(sp)
     addi sp, sp, 4
