@@ -6,7 +6,6 @@ keys:    .half 1, 2, 3, 4, 5, 6
 space_char: .byte ' '
 
 .text
-
 main:
     # Set up addresses for blk_in, blk_out, and keys
     la a0, blk_in
@@ -135,8 +134,6 @@ mul_add:
 mul_add_sub:
     add a0, a0, a3
     ret
-
-
 
 idea_round:
     addi sp, sp, -4
