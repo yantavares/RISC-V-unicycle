@@ -220,7 +220,7 @@ idea_round:
     # word3 = t2
     mv t2, t4
 
-    # Store the results to blk_out_ptr (using a1 as the pointer might cause confusion. Instead, use a1 as intended)
+    # Store the results to blk_out_ptr
     sh t0, 0(a4)
     sh t1, 2(a4)
     sh t2, 4(a4)
