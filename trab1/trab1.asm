@@ -3,6 +3,8 @@ blk_in:  .half 0, 1, 2, 3
 blk_out: .half 0, 0, 0, 0
 keys:    .half 1, 2, 3, 4, 5, 6
 
+space_char: .byte ' '
+
 .text
 
 main:
@@ -25,10 +27,13 @@ print_loop:
 
     # Print blk_out[t0]
     lh a0, 0(a4)  # load halfword to a0
-    li a7, 34     # print integer
+    li a7, 1      # print integer
     ecall
-    
+
     # Print space
+    lbu a0, space_char
+    li a7, 11     # system call code for print character
+    ecall
 
     # Update index and pointer for the next iteration
     addi t0, t0, 1
@@ -132,6 +137,8 @@ mul_add:
 mul_add_sub:
     add a0, a0, a3
     ret
+
+
 
 idea_round:
     addi sp, sp, -4
