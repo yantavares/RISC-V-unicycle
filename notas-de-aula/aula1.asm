@@ -6,7 +6,7 @@ y:	.word 99
 # Comandos
 .text 
 	# x0 ou zero
-	# Transferir valor de x2 para x4, ja qye x0 = 0
+	# Transferir valor de x2 para x4, ja que x0 = 0
 	add x2, x0, x4
 	
 	# t0, t1... -> Registradores temporários
