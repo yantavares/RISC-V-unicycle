@@ -3,10 +3,10 @@
 
 using namespace std;
 
-// Nth Fibonacci number to be computed
+// Nth fibonacci term to be computed
 int N = 40;
 
-long long recursiveFibo(long long n)
+int recursiveFibo(int n)
 {
     if (n < 1)
     {
@@ -22,12 +22,12 @@ long long recursiveFibo(long long n)
     }
 }
 
-long long dynamicFibo(long long n)
+int dynamicFibo(int n)
 {
-    long long fibo[n + 1];
+    int fibo[n + 1];
     fibo[0] = 0;
     fibo[1] = 1;
-    for (long long i = 2; i <= n; i++)
+    for (int i = 2; i <= n; i++)
     {
         fibo[i] = fibo[i - 1] + fibo[i - 2];
     }
@@ -37,16 +37,16 @@ long long dynamicFibo(long long n)
 int main(int argc, char const *argv[])
 {
     auto start_recursive = chrono::high_resolution_clock::now();
-    cout << "Recursive : " << recursiveFibo(N) << "  ";
+    cout << "Recursive: " << recursiveFibo(N) << "  ";
     auto end_recursive = chrono::high_resolution_clock::now();
-    auto duration_recursive = chrono::duration_cast<chrono::milliseconds>(end_recursive - start_recursive);
-    cout << "Time taken by Recursive function: " << duration_recursive.count() << " milliseconds" << endl;
+    auto duration_recursive = chrono::duration_cast<chrono::microseconds>(end_recursive - start_recursive);
+    cout << "Time taken: " << duration_recursive.count() << " microseconds" << endl;
 
     auto start_dynamic = chrono::high_resolution_clock::now();
-    cout << "Dynamic   : " << dynamicFibo(N) << "  ";
+    cout << "Dynamic  : " << dynamicFibo(N) << "  ";
     auto end_dynamic = chrono::high_resolution_clock::now();
-    auto duration_dynamic = chrono::duration_cast<chrono::milliseconds>(end_dynamic - start_dynamic);
-    cout << "Time taken by Dynamic   function: " << duration_dynamic.count() << " milliseconds" << endl;
+    auto duration_dynamic = chrono::duration_cast<chrono::microseconds>(end_dynamic - start_dynamic);
+    cout << "Time taken: " << duration_dynamic.count() << " microseconds" << endl;
 
     return 0;
 }
