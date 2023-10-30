@@ -1,21 +1,15 @@
-.data
-    newline: .word 10
-
 .text
-    li a7, 5
-    ecall
-    
-    mv t0, a0
-    
-    li a7, 5
-    ecall
-    
-    mv t1, a0
-    
-    add a0, t0, t1
-    
-    li a7, 1
-    ecall
-    
-    li a7, 10
-    ecall 
+
+li a0, 3
+
+jal t0, soma
+
+li a7, 1
+ecall
+
+li a7, 10
+ecall
+
+soma:
+  addi a0, a0, 3
+  jalr t0         # Return using the address in t0
