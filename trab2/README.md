@@ -1,6 +1,6 @@
 # Project 2 - RISC-V simmulator
 
-This project consists of a RISC-V simmulator, written in Python3. You should not need to install any external libraries to run it. The project was NOT MADE BY ME. All credits go to [him](https://github.com/geraldotnf-unb)
+This project consists of a RISC-V simmulator, written in Python3. You should not need to install any external libraries to run it. The project was NOT MADE BY ME. All credits go to [geraldotnf.](https://github.com/geraldotnf-unb)
 
 Here are the instructions implemented in the simmulator:
 
