@@ -2,17 +2,17 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
-ENTITY ula_tb IS
-END ula_tb;
+ENTITY Testbench_AluRV32 IS
+END Testbench_AluRV32;
 
-ARCHITECTURE tb_arch OF ula_tb IS
+ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
     -- Declaração de sinais
     SIGNAL opcode: std_logic_vector(3 DOWNTO 0);
     SIGNAL A, B, Z: std_logic_vector(31 DOWNTO 0);
     SIGNAL zero: std_logic;
 
     -- Declaração do componente ULA
-    COMPONENT ulaRV
+    COMPONENT AluRV32
         PORT (
             opcode : IN  std_logic_vector(3 DOWNTO 0);
             A, B   : IN  std_logic_vector(31 DOWNTO 0);
@@ -23,7 +23,7 @@ ARCHITECTURE tb_arch OF ula_tb IS
 
     -- Instanciação da ULA
     BEGIN
-        ULA: ulaRV PORT MAP (opcode => opcode, A => A, B => B, Z => Z, zero => zero);
+        ULA: AluRV32 PORT MAP (opcode => opcode, A => A, B => B, Z => Z, zero => zero);
 
         -- Processo de Estímulo
         PROCESS

@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-ENTITY aluRV32 IS
+ENTITY AluRV32 IS
     GENERIC (WSIZE : NATURAL := 32);
     PORT (
         opcode : IN  std_logic_vector(3 DOWNTO 0);
@@ -10,9 +10,9 @@ ENTITY aluRV32 IS
         Z      : OUT std_logic_vector(WSIZE-1 DOWNTO 0);
         zero   : OUT std_logic
     );
-END aluRV32;
+END AluRV32;
 
-ARCHITECTURE behavior OF aluRV32 IS
+ARCHITECTURE behavior OF AluRV32 IS
 BEGIN
     PROCESS (opcode, A, B)
     BEGIN
