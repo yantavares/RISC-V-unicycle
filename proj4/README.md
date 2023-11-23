@@ -7,25 +7,25 @@ Objective: to design, simulate, and synthesize a 32-bit RISC-V ALU (Arithmetic L
 Using your terminal, execute the following commands:
 
 ```bash
-ghdl -a RISCV32_ALU.vhdl
+ghdl -a aluRV32.vhdl
 
 ```
 
 ```bash
 
-ghdl -a Testbench_RISCV32_ALU.vhdl
+ghdl -a Testbench_aluRV32.vhdl
 
 ```
 
 These commands will compile the files. Then, execute the following commands:
 
 ```bash
-ghdl -e Testbench_RISCV32_ALU
+ghdl -e Testbench_aluRV32
 
 ```
 
 ```bash
-ghdl -r Testbench_RISCV32_ALU --vcd=wave.vcd
+ghdl -r Testbench_aluRV32 --vcd=wave.vcd
 
 ```
 
