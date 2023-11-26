@@ -45,3 +45,5 @@ This should generate the reports in the terminal and the wave.vcd file. To open 
 gtkwave wave.vcd
 
 ```
+
+The file wave.vcd is already in the repository, so you can skip the previous steps and just open it using GTKWave.
