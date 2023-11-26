@@ -2,6 +2,12 @@
 
 Objective: to design, simulate, and synthesize a 32-bit RISC-V ALU (Arithmetic Logic Unit) version in VHDL.
 
+## GHDL and GTKWave installation
+
+The program was written in VHDL and simulated using GHDL software. You can download GHDL [here](https://github.com/ghdl/ghdl), however, it should run on any VHDL simulator.
+
+You can see the values generated in wave form in the file wave.vcd, which can be opened using GTKWave software. You can download GTKWave [here](http://gtkwave.sourceforge.net/).
+
 ## How to run using GHDL and GTKWave
 
 Using your terminal, execute the following commands:
