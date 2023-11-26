@@ -6,9 +6,8 @@ ENTITY Testbench_AluRV32 IS
 END Testbench_AluRV32;
 
 ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
-    constant ALL_ONES : std_logic_vector(31 downto 0) := (others => '1');
+    CONSTANT ALL_ONES : std_logic_vector(31 DOWNTO 0) := (OTHERS => '1');
 
-    -- Declaration of signals
     SIGNAL opcode: std_logic_vector(3 DOWNTO 0);
     SIGNAL A, B, Z: std_logic_vector(31 DOWNTO 0);
     SIGNAL zero: std_logic;
