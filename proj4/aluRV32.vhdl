@@ -45,14 +45,16 @@ BEGIN
                 Z <= (others => '0');
                 Z(0) <= '1' WHEN unsigned(A) >= unsigned(B) ELSE '0';
             WHEN "1100" => -- SEQ
-                Z <= (others => '1') WHEN A = B ELSE (others => '0');
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN A = B ELSE '0';
             WHEN "1101" => -- SNE
-                Z <= (others => '1') WHEN A /= B ELSE (others => '0');
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN A /= B ELSE '0';
             WHEN OTHERS =>
                 NULL;
         END CASE;
     END PROCESS;
-    
+
     PROCESS (Z)
     BEGIN
         zero <= '1' WHEN Z = std_logic_vector(to_unsigned(0, 32)) ELSE '0';

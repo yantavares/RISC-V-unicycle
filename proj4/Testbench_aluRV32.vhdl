@@ -6,8 +6,6 @@ ENTITY Testbench_AluRV32 IS
 END Testbench_AluRV32;
 
 ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
-    CONSTANT ALL_ONES : std_logic_vector(31 DOWNTO 0) := (OTHERS => '1');
-
     SIGNAL opcode: std_logic_vector(3 DOWNTO 0);
     SIGNAL A, B, Z: std_logic_vector(31 DOWNTO 0);
     SIGNAL zero: std_logic;
@@ -178,7 +176,7 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             B <= std_logic_vector(to_unsigned(4, 32));
             WAIT FOR 10 ms;
             -- REPORT "SEQ: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = ALL_ONES REPORT "SEQ failed - Z" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SEQ failed - Z" SEVERITY ERROR;
             ASSERT zero = '0' REPORT "SEQ failed- zero" SEVERITY ERROR;
 
             REPORT "SEQ OK";
@@ -189,7 +187,7 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             B <= std_logic_vector(to_unsigned(6, 32));
             WAIT FOR 10 ms;
             -- REPORT "SNE: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = ALL_ONES REPORT "SNE failed - Z" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SNE failed - Z" SEVERITY ERROR;
             ASSERT zero = '0' REPORT "SNE failed - zero" SEVERITY ERROR;
 
             REPORT "SNE OK";
