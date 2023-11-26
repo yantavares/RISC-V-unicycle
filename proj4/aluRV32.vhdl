@@ -18,9 +18,9 @@ BEGIN
     BEGIN
         CASE opcode IS
             WHEN "0000" => -- ADD
-                Z <= std_logic_vector(unsigned(A) + unsigned(B));
+                Z <= std_logic_vector(signed(A) + signed(B));
             WHEN "0001" => -- SUB
-                Z <= std_logic_vector(unsigned(A) - unsigned(B));
+                Z <= std_logic_vector(signed(A) - signed(B));
             WHEN "0010" => -- AND
                 Z <= A AND B;
             WHEN "0011" => -- OR
