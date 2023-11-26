@@ -32,15 +32,19 @@ BEGIN
             WHEN "0110" => -- SRL
                 Z <= std_logic_vector(shift_right(unsigned(A), to_integer(unsigned(B))));
             WHEN "0111" => -- SRA
-                -- Implementação de SRA
+                Z <= std_logic_vector(shift_right(signed(A), to_integer(unsigned(B))));
             WHEN "1000" => -- SLT
-                -- Implementação de SLT
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN signed(A) < signed(B) ELSE '0';
             WHEN "1001" => -- SLTU
-                -- Implementação de SLTU
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN unsigned(A) < unsigned(B) ELSE '0';
             WHEN "1010" => -- SGE
-                -- Implementação de SGE
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN signed(A) >= signed(B) ELSE '0';
             WHEN "1011" => -- SGEU
-                -- Implementação de SGEU
+                Z <= (others => '0');
+                Z(0) <= '1' WHEN unsigned(A) >= unsigned(B) ELSE '0';
             WHEN "1100" => -- SEQ
                 Z <= '1' WHEN A = B ELSE '0';
             WHEN "1101" => -- SNE
