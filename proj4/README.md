@@ -7,25 +7,29 @@ Objective: to design, simulate, and synthesize a 32-bit RISC-V ALU (Arithmetic L
 Using your terminal, execute the following commands:
 
 ```bash
-ghdl -a AluRV32.vhdl
+ghdl -a --std=08 AluRV32.vhdl
 
 ```
+
+The --std=08 flag is used to specify the VHDL version. The AluRV32.vhdl file contains commands that are only available in VHDL 2008 and up.
+
+````bash
 
 ```bash
 
-ghdl -a Testbench_AluRV32.vhdl
+ghdl -a --std=08 Testbench_AluRV32.vhdl
 
-```
+````
 
 These commands will compile the files. Then, execute the following commands:
 
 ```bash
-ghdl -e Testbench_AluRV32
+ghdl -e --std=08 Testbench_AluRV32
 
 ```
 
 ```bash
-ghdl -r Testbench_AluRV32 --vcd=wave.vcd
+ghdl -r --std=08 Testbench_AluRV32 --vcd=wave.vcd
 
 ```
 
