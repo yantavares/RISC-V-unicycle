@@ -56,9 +56,10 @@ BEGIN
         END CASE;
     END PROCESS;
 
+    -- Necessary to make zero update in the same cycle as Z
     PROCESS (Z)
     BEGIN
         zero <= '1' WHEN Z = std_logic_vector(to_unsigned(0, 32)) ELSE '0';
     END PROCESS;
-    
+
 END behavior;
