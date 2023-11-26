@@ -3,11 +3,10 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
 ENTITY AluRV32 IS
-    GENERIC (WSIZE : NATURAL := 32);
     PORT (
         opcode : IN  std_logic_vector(3 DOWNTO 0);
-        A, B   : IN  std_logic_vector(WSIZE-1 DOWNTO 0);
-        Z      : OUT std_logic_vector(WSIZE-1 DOWNTO 0);
+        A, B   : IN  std_logic_vector(31 DOWNTO 0);
+        Z      : OUT std_logic_vector(31 DOWNTO 0);
         zero   : OUT std_logic
     );
 END AluRV32;
@@ -46,12 +45,16 @@ BEGIN
                 Z <= (others => '0');
                 Z(0) <= '1' WHEN unsigned(A) >= unsigned(B) ELSE '0';
             WHEN "1100" => -- SEQ
-                Z <= '1' WHEN A = B ELSE '0';
+                Z <= (others => '1') WHEN A = B ELSE (others => '0');
             WHEN "1101" => -- SNE
-                Z <= '1' WHEN A /= B ELSE '0';
+                Z <= (others => '1') WHEN A /= B ELSE (others => '0');
             WHEN OTHERS =>
-                Z <= (others => '0');
+                NULL;
         END CASE;
-        zero <= '1' WHEN Z = (others => '0') ELSE '0';
+    END PROCESS;
+    
+    PROCESS (Z)
+    BEGIN
+        zero <= '1' WHEN Z = std_logic_vector(to_unsigned(0, 32)) ELSE '0';
     END PROCESS;
 END behavior;
