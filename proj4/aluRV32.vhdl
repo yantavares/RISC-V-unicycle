@@ -51,6 +51,7 @@ BEGIN
                 Z <= (others => '0');
                 Z(0) <= '1' WHEN A /= B ELSE '0';
             WHEN OTHERS =>
+                ASSERT opcode = "UUUU" REPORT "Invalid opcode - " & to_string(unsigned(opcode)) severity FAILURE;
                 NULL;
         END CASE;
     END PROCESS;

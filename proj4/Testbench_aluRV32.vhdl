@@ -31,10 +31,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0000"; -- ADD
             A <= std_logic_vector(to_unsigned(5, 32));
             B <= std_logic_vector(to_unsigned(3, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "ADD: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "ADD failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "ADD failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "ADD failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "ADD failed - zero" SEVERITY FAILURE;
 
             REPORT "ADD OK";
 
@@ -42,10 +42,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0000"; -- ADD
             A <= std_logic_vector(to_unsigned(0, 32));
             B <= std_logic_vector(to_unsigned(0, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "ADD (Zero): " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(0, 32)) REPORT "ADD (Zero) failed - Z" SEVERITY ERROR;
-            ASSERT zero = '1' REPORT "ADD (Zero) failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(0, 32)) REPORT "ADD (Zero) failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "ADD (Zero) failed - zero" SEVERITY FAILURE;
 
             REPORT "ADD (Zero) OK";
 
@@ -53,10 +53,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0001"; -- SUB
             A <= std_logic_vector(to_unsigned(10, 32));
             B <= std_logic_vector(to_unsigned(4, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SUB: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(6, 32)) REPORT "SUB failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SUB failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(6, 32)) REPORT "SUB failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SUB failed - zero" SEVERITY FAILURE;
 
             REPORT "SUB OK";
 
@@ -64,10 +64,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0010"; -- AND
             A <= std_logic_vector(to_unsigned(15, 32));
             B <= std_logic_vector(to_unsigned(7, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "AND: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(7, 32)) REPORT "AND failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "AND failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(7, 32)) REPORT "AND failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "AND failed - zero" SEVERITY FAILURE;
 
             REPORT "AND OK";
 
@@ -75,10 +75,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0011"; -- OR
             A <= std_logic_vector(to_unsigned(12, 32));
             B <= std_logic_vector(to_unsigned(5, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "OR: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(13, 32)) REPORT "OR failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "OR failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(13, 32)) REPORT "OR failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "OR failed - zero" SEVERITY FAILURE;
 
             REPORT "OR OK";
 
@@ -86,10 +86,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0100"; -- XOR
             A <= std_logic_vector(to_unsigned(9, 32));
             B <= std_logic_vector(to_unsigned(3, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "XOR: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(10, 32)) REPORT "XOR failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "XOR failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(10, 32)) REPORT "XOR failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "XOR failed - zero" SEVERITY FAILURE;
 
             REPORT "XOR OK";
 
@@ -97,10 +97,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0101"; -- SLL
             A <= std_logic_vector(to_unsigned(8, 32));
             B <= std_logic_vector(to_unsigned(2, 32)); -- Shift amount
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SLL: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(32, 32)) REPORT "SLL failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SLL failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(32, 32)) REPORT "SLL failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SLL failed - zero" SEVERITY FAILURE;
 
             REPORT "SLL OK";
 
@@ -108,10 +108,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0110"; -- SRL
             A <= std_logic_vector(to_unsigned(16, 32));
             B <= std_logic_vector(to_unsigned(1, 32)); -- Shift amount
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SRL: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "SRL failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SRL failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "SRL failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SRL failed - zero" SEVERITY FAILURE;
 
             REPORT "SRL OK";
 
@@ -119,10 +119,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "0111"; -- SRA
             A <= std_logic_vector(to_unsigned(32, 32));
             B <= std_logic_vector(to_unsigned(2, 32)); -- Shift amount
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SRA: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "SRA failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SRA failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(8, 32)) REPORT "SRA failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SRA failed - zero" SEVERITY FAILURE;
 
             REPORT "SRA OK";
 
@@ -130,10 +130,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "1000"; -- SLT
             A <= std_logic_vector(to_unsigned(5, 32));
             B <= std_logic_vector(to_unsigned(7, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SLT: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SLT failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SLT failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SLT failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SLT failed - zero" SEVERITY FAILURE;
 
             REPORT "SLT OK";
 
@@ -141,10 +141,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "1001"; -- SLTU
             A <= std_logic_vector(to_unsigned(6, 32));
             B <= std_logic_vector(to_unsigned(8, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SLTU: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SLTU failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SLTU failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SLTU failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SLTU failed - zero" SEVERITY FAILURE;
 
             REPORT "SLTU OK";
 
@@ -152,10 +152,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "1010"; -- SGE
             A <= std_logic_vector(to_unsigned(9, 32));
             B <= std_logic_vector(to_unsigned(3, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SGE: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SGE failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SGE failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SGE failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SGE failed - zero" SEVERITY FAILURE;
 
             REPORT "SGE OK";
 
@@ -163,10 +163,10 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "1011"; -- SGEU
             A <= std_logic_vector(to_unsigned(10, 32));
             B <= std_logic_vector(to_unsigned(5, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SGEU: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SGEU failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SGEU failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SGEU failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SGEU failed - zero" SEVERITY FAILURE;
 
             REPORT "SGEU OK";
 
@@ -174,21 +174,32 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             opcode <= "1100"; -- SEQ
             A <= std_logic_vector(to_unsigned(4, 32));
             B <= std_logic_vector(to_unsigned(4, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SEQ: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SEQ failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SEQ failed- zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SEQ failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SEQ failed- zero" SEVERITY FAILURE;
 
             REPORT "SEQ OK";
+
+            -- SEQ (Zero)
+            opcode <= "1100"; -- SEQ
+            A <= std_logic_vector(to_unsigned(2, 32));
+            B <= std_logic_vector(to_unsigned(4, 32));
+            WAIT FOR 10 ns;
+            -- REPORT "SEQ: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
+            ASSERT Z = std_logic_vector(to_unsigned(0, 32)) REPORT "SEQ (Zero) failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "SEQ (Zero) failed- zero" SEVERITY FAILURE;
+
+            REPORT "SEQ (Zero) OK";
 
             -- SNE
             opcode <= "1101"; -- SNE
             A <= std_logic_vector(to_unsigned(5, 32));
             B <= std_logic_vector(to_unsigned(6, 32));
-            WAIT FOR 10 ms;
+            WAIT FOR 10 ns;
             -- REPORT "SNE: " & to_string(unsigned(Z)) & ", Zero flag: " & std_logic'image(zero);
-            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SNE failed - Z" SEVERITY ERROR;
-            ASSERT zero = '0' REPORT "SNE failed - zero" SEVERITY ERROR;
+            ASSERT Z = std_logic_vector(to_unsigned(1, 32)) REPORT "SNE failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SNE failed - zero" SEVERITY FAILURE;
 
             REPORT "SNE OK";
 
