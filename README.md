@@ -1,4 +1,4 @@
-# OAC [ en / :us: ]
+# OAC [ en ]
 
 [![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.GPLv3.org/licenses/gpl-3.0.en.html)
@@ -25,7 +25,7 @@ For Project 2, you only need to have Python installed on your machine. To execut
 
 Starting from Project 3, all were done in VHDL. To simulate the projects, I recommend using [GHDL](https://github.com/ghdl/ghdl) and [GTKWave](http://gtkwave.sourceforge.net/). Installation instructions can be found in their respective repositories.
 
-# OAC [ pt / :brazil: ]
+# OAC [ pt ]
 
 [![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/license/gpl-3-0/)
