@@ -1,4 +1,7 @@
-# OAC
+# OAC [pt/BR]
+
+[![GitHub license](https://img.shields.io/github/license/yantavares/OAC)](https://github.com/yantavares/OAC)
+[![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
 
 Repositório destinado aos códigos da disciplina de Organização e Arquitetura de Computadores da UnB (2023/2).
 
@@ -6,13 +9,9 @@ A disciplina se baseia na arquitetura RISC-V, e os projetos são feitos em Assem
 
 **Obs.:** Se esse repositório te ajudou, por favor deixe uma :star: no repo :)
 
-## Observação
-
-Se esse repositório te ajudou, por favor deixe uma :star: no repo :)
-
 ## Projetos
 
-Explicações detalhadas dos projetos e suas implementações podem ser encontradas nos READMEs da pasta de cada projeto.
+Explicações detalhadas dos projetos e suas implementações podem ser encontradas nos READMEs da pasta de cada projeto (em inglês).
 
 ### Projeto 1: Implementação do algoritmo IDEA (Assembly)
 
