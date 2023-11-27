@@ -36,14 +36,14 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             ASSERT zero = '0' REPORT "ADD failed - zero" SEVERITY FAILURE;
             REPORT "ADD OK";
 
-            -- ADD (Zero)
+            -- ADD 2
             opcode <= "0000"; -- ADD
             A <= std_logic_vector(to_signed(0, 32));
             B <= std_logic_vector(to_signed(0, 32));
             WAIT FOR 10 ns;          
-            ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "ADD (Zero) failed - Z" SEVERITY FAILURE;
-            ASSERT zero = '1' REPORT "ADD (Zero) failed - zero" SEVERITY FAILURE;
-            REPORT "ADD (Zero) OK";
+            ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "ADD 2 failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "ADD 2 failed - zero" SEVERITY FAILURE;
+            REPORT "ADD 2 OK";
 
             -- SUB
             opcode <= "0001"; -- SUB
@@ -171,14 +171,14 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             ASSERT zero = '0' REPORT "SEQ failed- zero" SEVERITY FAILURE;
             REPORT "SEQ OK";
 
-            -- SEQ (Zero)
+            -- SEQ 2
             opcode <= "1100"; -- SEQ
             A <= std_logic_vector(to_signed(2, 32));
             B <= std_logic_vector(to_signed(4, 32));
             WAIT FOR 10 ns;
-            ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "SEQ (Zero) failed - Z" SEVERITY FAILURE;
-            ASSERT zero = '1' REPORT "SEQ (Zero) failed - zero" SEVERITY FAILURE;
-            REPORT "SEQ (Zero) OK";
+            ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "SEQ 2 failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "SEQ 2 failed - zero" SEVERITY FAILURE;
+            REPORT "SEQ 2 OK";
 
             -- SNE
             opcode <= "1101"; -- SNE
