@@ -47,3 +47,7 @@ gtkwave wave.vcd
 ```
 
 The file wave.vcd is already in the repository, so you can skip the previous steps and just open it using GTKWave.
+
+## Report
+
+There is a full report about this project in the file `Projeto_5_OAC.pdf` (in Portuguese). If you want to see screenshots of the waveform and some analysis of the results, check it out.
