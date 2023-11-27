@@ -1,7 +1,7 @@
 # OAC [ en ]
 
 [![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
-[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.GPLv3.org/licenses/gpl-3.0.en.html)
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
 Repository dedicated to the codes of the course 'Organization and Architecture of Computers' at UnB (2023/2).
 
