@@ -135,6 +135,15 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             ASSERT zero = '0' REPORT "SGE failed - zero" SEVERITY FAILURE;
             REPORT "SGE OK";
 
+            -- SGE 2
+            opcode <= "1010"; -- SGE 2
+            A <= "10000000000000000000000000000000";
+            B <= "00000000000000000000000000000000";
+            WAIT FOR 10 ns;
+            ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "SGE 2 failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "SGE 2 failed - zero" SEVERITY FAILURE;
+            REPORT "SGE 2 OK";
+
             -- SGEU
             opcode <= "1011"; -- SGEU
             A <= std_logic_vector(to_signed(10, 32));
@@ -143,6 +152,15 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             ASSERT Z = std_logic_vector(to_signed(1, 32)) REPORT "SGEU failed - Z" SEVERITY FAILURE;
             ASSERT zero = '0' REPORT "SGEU failed - zero" SEVERITY FAILURE;
             REPORT "SGEU OK";
+
+            -- SGEU 2
+            opcode <= "1011"; -- SGEU 2
+            A <= "10000000000000000000000000000000";
+            B <= "00000000000000000000000000000000";
+            WAIT FOR 10 ns;
+            ASSERT Z = std_logic_vector(to_signed(1, 32)) REPORT "SGEU 2 failed - Z" SEVERITY FAILURE;
+            ASSERT zero = '0' REPORT "SGEU 2 failed - zero" SEVERITY FAILURE;
+            REPORT "SGEU 2 OK";
 
             -- SEQ
             opcode <= "1100"; -- SEQ
@@ -159,7 +177,7 @@ ARCHITECTURE tb_arch OF Testbench_AluRV32 IS
             B <= std_logic_vector(to_signed(4, 32));
             WAIT FOR 10 ns;
             ASSERT Z = std_logic_vector(to_signed(0, 32)) REPORT "SEQ (Zero) failed - Z" SEVERITY FAILURE;
-            ASSERT zero = '1' REPORT "SEQ (Zero) failed- zero" SEVERITY FAILURE;
+            ASSERT zero = '1' REPORT "SEQ (Zero) failed - zero" SEVERITY FAILURE;
             REPORT "SEQ (Zero) OK";
 
             -- SNE
