@@ -46,7 +46,19 @@ Para simular o projeto 1, recomendo o uso do [RARS](https://github.com/TheThirdO
 
 ### Projeto 2 -> Python;
 
-Para o projeto 2, é apenas necessário ter o Python instalado na máquina. Para executar o projeto, basta executar o arquivo `simulador.py`.
+Para o projeto 2, é apenas necessário ter o Python e Numpy instalados na máquina.
+
+Você pode instalar o Numpy com o pip:
+
+```bash
+pip install numpy
+```
+ou
+```bash
+pip3 install numpy
+```
+
+Para executar o projeto, basta executar o arquivo `simulador.py`.
 
 ### Projeto 3, etc. -> VHDL
 
