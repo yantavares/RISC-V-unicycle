@@ -2,10 +2,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL; 
 
-entity XREG_TB is
-end XREG_TB;
+entity Testbench_XREG is
+end Testbench_XREG;
 
-architecture behavior of XREG_TB is 
+architecture behavior of Testbench_XREG is 
     component XREG
     Port ( clk   : in  STD_LOGIC;
            wren  : in  STD_LOGIC;

@@ -1,7 +1,7 @@
 v 4
-file . "Testbench_XREG.vhdl" "e94c4d8a532b3e5ebbea30c43ae4a4e04e3b741f" "20231130202010.675":
-  entity xreg_tb at 1( 0) + 0 on 41;
-  architecture behavior of xreg_tb at 8( 103) + 0 on 42;
 file . "XREG.vhdl" "60759e307c1e596ab11d26977e063f02e724d3ad" "20231130194834.021":
   entity xreg at 1( 0) + 0 on 11;
   architecture behavioral of xreg at 17( 502) + 0 on 12;
+file . "Testbench_XREG.vhdl" "7c7231684611f4667ee306ad76f6e21c2303a6b0" "20231130202247.944":
+  entity testbench_xreg at 1( 0) + 0 on 43;
+  architecture behavior of testbench_xreg at 8( 117) + 0 on 44;
