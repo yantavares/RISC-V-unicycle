@@ -33,6 +33,9 @@ architecture behavior of XREG_TB is
     -- Clock period definitions
     constant clk_period : time := 10 ns;
 
+    -- Test control
+    signal test_finished : boolean := false;
+
 begin
     -- Instantiate the Unit Under Test (UUT)
     uut: XREG Port Map (
@@ -47,48 +50,61 @@ begin
         );
 
     -- Clock process definitions
-    clk_process :process
+    clk_process : process
     begin
-        clk <= '0';
-        wait for clk_period/2;
-        clk <= '1';
-        wait for clk_period/2;
+        while not test_finished loop
+            clk <= '0';
+            wait for clk_period/2;
+            clk <= '1';
+            wait for clk_period/2;
+        end loop;
+        wait;  -- Terminate the process after the test is finished
     end process;
 
     -- Test process
     stim_proc: process
-        variable allZero : STD_LOGIC_VECTOR (31 downto 0) := (others => '0');
-    begin		
-        -- Test case 1: Write and read from register
+    begin
+        -- Initialize
+        wren <= '0';
+        wait for clk_period;
+
+        -- Write to register
         rd <= "00001"; -- Register 1
         data <= X"12345678";
         wren <= '1';
-        wait for clk_period*10;
+        wait for clk_period;
         wren <= '0';
+        wait for clk_period; -- Ensure a full clock cycle before reading
+
+        -- Read from register
         rs1 <= "00001"; -- Read from register 1
-        wait for clk_period*10;
+        wait for clk_period;
         assert (ro1 = X"12345678") report "Write and read from register test failed" severity failure;
         report "Write and read from register test passed" severity note;
-        
-        -- Test case 2: Ensure register 0 is constant
+
+        -- Ensure register 0 is constant
+        -- Write to register 0 (should have no effect)
         rd <= "00000"; -- Register 0 (constant)
         data <= X"FFFFFFFF";
         wren <= '1';
-        wait for clk_period*10;
+        wait for clk_period;
         wren <= '0';
+        wait for clk_period; -- Ensure a full clock cycle before reading
+
+        -- Read from register 0 (should still be zero)
         rs1 <= "00000"; -- Read from register 0
-        wait for clk_period*10;
-        assert (ro2 = X"00000000") report "Ensure register 0 is constant test failed" severity failure;
+        wait for clk_period;
+        assert (ro1 = X"00000000") report "Ensure register 0 is constant test failed" severity failure;
         report "Ensure register 0 is constant test passed" severity note;
 
         -- Read from unwritten registers
         rs1 <= "00010"; -- Unwritten register
         rs2 <= "00011"; -- Another unwritten register
-        wait for clk_period*10;
-        assert (ro1 = allZero) report "Unwritten register test failed - rs1" severity failure;
+        wait for clk_period;
+        assert (ro1 = X"00000000") report "Unwritten register test failed - rs1" severity failure;
         report "Unwritten register test passed - rs1" severity note;
 
-        assert (ro2 = allZero) report "Unwritten register test failed - rs2" severity failure;
+        assert (ro2 = X"00000000") report "Unwritten register test failed - rs2" severity failure;
         report "Unwritten register test passed - rs2" severity note;
 
         -- Multiple writes and reads
@@ -97,15 +113,15 @@ begin
             rd <= std_logic_vector(to_unsigned(i, 5));
             data <= std_logic_vector(to_unsigned(i*111, 32)); -- Some arbitrary data
             wren <= '1';
-            wait for clk_period*10;
+            wait for clk_period;
             wren <= '0';
-            wait for clk_period*10;
+            wait for clk_period;
         end loop;
 
         -- Read from registers and check values
         for i in 1 to 5 loop
             rs1 <= std_logic_vector(to_unsigned(i, 5));
-            wait for clk_period*10;
+            wait for clk_period;
             assert (ro1 = std_logic_vector(to_unsigned(i*111, 32))) report "Multiple writes/reads test failed for register" & integer'image(i) severity failure;
             report "Multiple writes/reads test passed - register " & integer'image(i) severity note;
         end loop;
@@ -114,24 +130,26 @@ begin
         rd <= "00100"; -- Register 4
         data <= X"A5A5A5A5";
         wren <= '1';
-        wait for clk_period*10;
+        wait for clk_period;
         wren <= '0';
 
         rd <= "00101"; -- Register 5
         data <= X"5A5A5A5A";
         wren <= '1';
-        wait for clk_period*10;
+        wait for clk_period;
         wren <= '0';
 
         rs1 <= "00100"; -- Read from register 4
         rs2 <= "00101"; -- Read from register 5
-        wait for clk_period*10;
+        wait for clk_period;
         assert (ro1 = X"A5A5A5A5") report "Simultaneous read test failed - register 4" severity failure;
         report "Simultaneous read test passed - register 4" severity note;
 
         assert (ro2 = X"5A5A5A5A") report "Simultaneous read test failed - register 5" severity failure;
         report "Simultaneous read test passed - register 5" severity note;
 
+        -- End of test
+        test_finished <= true;
         wait;
     end process;
 end behavior;
