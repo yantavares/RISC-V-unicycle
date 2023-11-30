@@ -3,13 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity XREGS_tb is
+entity XREG_TB is
 -- Testbench entities do not have ports.
-end XREGS_tb;
+end XREG_TB;
 
-architecture behavior of XREGS_tb is 
+architecture behavior of XREG_TB is 
     -- Component Declaration for the Unit Under Test (UUT)
-    component XREGS
+    component XREG
     Port ( clk   : in  STD_LOGIC;
            wren  : in  STD_LOGIC;
            rs1   : in  STD_LOGIC_VECTOR (4 downto 0);
@@ -38,7 +38,7 @@ architecture behavior of XREGS_tb is
 
 begin
     -- Instantiate the Unit Under Test (UUT)
-    uut: XREGS Port Map (
+    uut: XREG Port Map (
           clk => clk,
           wren => wren,
           rs1 => rs1,
