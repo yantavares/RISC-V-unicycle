@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity XREG is
     Port ( clk   : in  STD_LOGIC;
@@ -22,12 +21,12 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if wren = '1' and rd /= "00000" then
-                registers(conv_integer(rd)) <= data;
+            if wren = '1' and to_integer(unsigned(rd)) /= 0 then
+                registers(to_integer(unsigned(rd))) <= data;
             end if;
 
-            ro1 <= registers(conv_integer(rs1));
-            ro2 <= registers(conv_integer(rs2));
+            ro1 <= registers(to_integer(unsigned(rs1)));
+            ro2 <= registers(to_integer(unsigned(rs2)));
         end if;
     end process;
 end Behavioral;
