@@ -101,15 +101,15 @@ begin
         rs1 <= "00010"; -- Unwritten register
         rs2 <= "00011"; -- Another unwritten register
         wait for clk_period;
-        assert (ro1 = X"00000000") report "Unwritten register test failed - rs1" severity failure;
+        assert (ro1 = X"00000000") report "Unwritten register test failed - register 1" severity failure;
         report "Unwritten register test passed - rs1" severity note;
 
-        assert (ro2 = X"00000000") report "Unwritten register test failed - rs2" severity failure;
+        assert (ro2 = X"00000000") report "Unwritten register test failed - register 2" severity failure;
         report "Unwritten register test passed - rs2" severity note;
 
         -- Multiple writes and reads
         -- Write to registers
-        for i in 1 to 5 loop
+        for i in 1 to 31 loop
             rd <= std_logic_vector(to_unsigned(i, 5));
             data <= std_logic_vector(to_unsigned(i*111, 32)); -- Some arbitrary data
             wren <= '1';
@@ -119,7 +119,7 @@ begin
         end loop;
 
         -- Read from registers and check values
-        for i in 1 to 5 loop
+        for i in 1 to 31 loop
             rs1 <= std_logic_vector(to_unsigned(i, 5));
             wait for clk_period;
             assert (ro1 = std_logic_vector(to_unsigned(i*111, 32))) report "Multiple writes/reads test failed for register" & integer'image(i) severity failure;
