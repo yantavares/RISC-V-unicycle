@@ -3,33 +3,33 @@ GHDL=ghdl
 GTKWAVE=gtkwave
 
 # VHDL source files
-SOURCES=pc.vhdl instruction_memory.vhdl register_bank.vhdl alu.vhdl immediate_generator.vhdl risc_v_processor.vhdl Processor_Testbench.vhdl
+SOURCES=../proj3/ImmediateGenerator.vhdl ../proj4/AluRV32.vhdl ../proj5/XREG.vhdl ../proj6/RAM.vhdl ../proj6/ROM.vhdl pc.vhdl RV32_Processor.vhdl Testbench_RV32_Processor.vhdl
 
 # Top level entity
-TOP_LEVEL=risc_v_processor
+TOP_LEVEL=RV32_Processor
 
 # Testbench
-TESTBENCH=Processor_Testbench
+TESTBENCH=Testbench_RV32_Processor
 
 # Default target: compile all VHDL files and run the testbench
 all: compile run_testbench
 
 # Compile VHDL files
 compile: $(SOURCES)
-    $(GHDL) -a $(SOURCES)
+    $(GHDL) -a --std=08 $(SOURCES)
 
 # Elaborate top level
 elaborate: compile
-    $(GHDL) -e $(TOP_LEVEL)
-    $(GHDL) -e $(TESTBENCH)
+    $(GHDL) -e --std=08 $(TOP_LEVEL)
+    $(GHDL) -e --std=08 $(TESTBENCH)
 
 # Run the testbench
 run_testbench: elaborate
-    $(GHDL) -r $(TESTBENCH) --vcd=testbench_waveform.vcd
+    $(GHDL) -r --std=08 $(TESTBENCH) --vcd=testbench_waveform.vcd
 
 # Run the processor simulation
 run_processor: elaborate
-    $(GHDL) -r $(TOP_LEVEL) --vcd=processor_waveform.vcd
+    $(GHDL) -r --std=08 $(TOP_LEVEL) --vcd=processor_waveform.vcd
 
 # Open the waveform with GTKWave
 view_waveform:
