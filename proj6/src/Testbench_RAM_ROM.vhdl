@@ -84,7 +84,9 @@ begin
             assert dataout_ram = std_logic_vector(to_unsigned(i, 32))
             report "RAM test failed at address " & integer'image(i)
             severity error;
-            -- report "RAM test passed at address " & integer'image(i) severity note;
+
+            report "RAM test passed at address " & integer'image(i) severity note;
+        
         end loop;
 
         -- ROM test: Read and verify contents
@@ -92,14 +94,14 @@ begin
             address <= std_logic_vector(to_unsigned(i, 8));
             wait for 10 ns; -- Wait for the ROM to output the data
 
-        -- Assertion to check if the ROM data matches the expected value
-        assert dataout_rom = std_logic_vector(to_unsigned(i, 32))
-        report "ROM test failed at address " & integer'image(i) & 
-            " Expected: " & to_string(std_logic_vector(to_unsigned(i, 32))) & 
-            " Got: " & to_string(dataout_rom)
-        severity error;
+            -- Assertion to check if the ROM data matches the expected value
+            assert dataout_rom = std_logic_vector(to_unsigned(i, 32))
+            report "ROM test failed at address " & integer'image(i) & 
+                " Expected: " & to_string(std_logic_vector(to_unsigned(i, 32))) & 
+                " Got: " & to_string(dataout_rom)
+            severity error;
 
-        -- report "ROM test passed at address " & integer'image(i) severity note;
+            report "ROM test passed at address " & integer'image(i) severity note;
 
         end loop;
         
