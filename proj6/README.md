@@ -19,7 +19,7 @@ This VHDL project can be simulated using various tools. Recommended software inc
 To simulate the RISC-V memory modules, follow these steps in your chosen simulation environment:
 
 ```bash
-cd src/
+cd src
 ```
 
 ### Compiling the VHDL Files

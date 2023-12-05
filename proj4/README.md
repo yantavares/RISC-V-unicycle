@@ -13,7 +13,7 @@ You can see the values generated in wave form in the file wave.vcd, which can be
 Using your terminal, execute the following commands:
 
 ```bash
-cd src/
+cd src
 
 ```
 
