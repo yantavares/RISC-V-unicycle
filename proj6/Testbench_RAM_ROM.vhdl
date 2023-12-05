@@ -26,11 +26,12 @@ architecture behavior of testbench_ram_rom is
 
     -- Signals for interfacing with the RAM and ROM
     signal clock   : std_logic := '0';
-    signal we      : std_logic := '0'; -- Initialized to '0'
-    signal address : std_logic_vector(7 downto 0) := (others => '0'); -- Initialized to '0'
-    signal datain  : std_logic_vector(31 downto 0) := (others => '0'); -- Initialized to '0'
-    signal dataout_ram : std_logic_vector(31 downto 0) := (others => '0'); -- Initialized to '0'
-    signal dataout_rom : std_logic_vector(31 downto 0) := (others => '0'); -- Initialized to '0'
+    signal we      : std_logic := '0'; 
+    signal address : std_logic_vector(7 downto 0) := (others => '0'); 
+    signal datain  : std_logic_vector(31 downto 0) := (others => '0'); 
+    signal dataout_ram : std_logic_vector(31 downto 0) := (others => '0'); 
+    signal dataout_rom : std_logic_vector(31 downto 0) := (others => '0'); 
+    signal test_finished : boolean := false;
 
 begin
     -- Instantiate the RAM and ROM
@@ -49,13 +50,16 @@ begin
             dataout => dataout_rom
         );
 
-    -- Clock process for RAM
+    -- Clock process
     clock_process: process
     begin
-        clock <= '0';
-        wait for 5 ns;
-        clock <= '1';
-        wait for 5 ns;
+        while not test_finished loop
+            clock <= '0';
+            wait for 5 ns;
+            clock <= '1';
+            wait for 5 ns;
+        end loop;
+        wait;
     end process;
 
     -- Testbench stimulus process
@@ -63,41 +67,43 @@ begin
     begin
         wait for 20 ns; -- Wait for initial stabilization
 
-    -- RAM test: Write and read sequence
-    for i in 0 to 255 loop
-        -- Write operation
-        we <= '1';
-        address <= std_logic_vector(to_unsigned(i, 8));
-        datain <= std_logic_vector(to_unsigned(i, 32));
-        wait for 10 ns;
-        
-        -- Read operation
-        we <= '0';
-        address <= std_logic_vector(to_unsigned(i, 8));
-        wait for 10 ns;
-        
-        -- Assertion to check if the read data matches the written data
-        assert dataout_ram = std_logic_vector(to_unsigned(i, 32))
-        report "RAM test failed at address " & integer'image(i)
+        -- RAM test: Write and read sequence
+        for i in 0 to 255 loop
+            -- Write operation
+            we <= '1';
+            address <= std_logic_vector(to_unsigned(i, 8));
+            datain <= std_logic_vector(to_unsigned(i, 32));
+            wait for 10 ns;
+            
+            -- Read operation
+            we <= '0';
+            address <= std_logic_vector(to_unsigned(i, 8));
+            wait for 10 ns;
+            
+            -- Assertion to check if the read data matches the written data
+            assert dataout_ram = std_logic_vector(to_unsigned(i, 32))
+            report "RAM test failed at address " & integer'image(i)
+            severity error;
+            -- report "RAM test passed at address " & integer'image(i) severity note;
+        end loop;
+
+        -- ROM test: Read and verify contents
+        for i in 0 to 255 loop
+            address <= std_logic_vector(to_unsigned(i, 8));
+            wait for 10 ns; -- Wait for the ROM to output the data
+
+        -- Assertion to check if the ROM data matches the expected value
+        assert dataout_rom = std_logic_vector(to_unsigned(i, 32))
+        report "ROM test failed at address " & integer'image(i) & 
+            " Expected: " & to_string(std_logic_vector(to_unsigned(i, 32))) & 
+            " Got: " & to_string(dataout_rom)
         severity error;
-    end loop;
 
-    -- ROM test: Read and verify contents
-    for i in 0 to 255 loop
-        address <= std_logic_vector(to_unsigned(i, 8));
-        wait for 10 ns; -- Wait for the ROM to output the data
+        -- report "ROM test passed at address " & integer'image(i) severity note;
 
-    -- Assertion to check if the ROM data matches the expected value
-    assert dataout_rom = std_logic_vector(to_unsigned(i, 32))
-    report "ROM test failed at address " & integer'image(i) & 
-        " Expected: " & to_string(std_logic_vector(to_unsigned(i, 32))) & 
-        " Got: " & to_string(dataout_rom)
-    severity error;
-
-    end loop;
-
-    wait; 
-
+        end loop;
+        
+        test_finished <= true;
         wait; 
     end process;
 

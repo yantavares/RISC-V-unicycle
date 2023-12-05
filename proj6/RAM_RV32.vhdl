@@ -8,7 +8,7 @@ entity RAM_RV32 is
         clock   : in std_logic;
         we      : in std_logic;
         address : in std_logic_vector(7 downto 0);
-        datain  : in std_logic_vector(31 downto 0);
+        datain  : in std_logic_vector(31 downto 0) := (others => '0'); -- Default value (Avoid undefined value)
         dataout : out std_logic_vector(31 downto 0)
     );
 end entity RAM_RV32;
@@ -16,7 +16,7 @@ end entity RAM_RV32;
 architecture RTL of RAM_RV32 is
     type mem_type is array (0 to 255) of std_logic_vector(31 downto 0);
     signal mem : mem_type;
-    signal read_address : std_logic_vector(7 downto 0);
+    signal read_address : std_logic_vector(7 downto 0) := (others => '0');
 begin
     -- Read and write process
     process(clock)
