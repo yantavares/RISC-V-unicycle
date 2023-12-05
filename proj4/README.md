@@ -13,6 +13,11 @@ You can see the values generated in wave form in the file wave.vcd, which can be
 Using your terminal, execute the following commands:
 
 ```bash
+cd src/
+
+```
+
+```bash
 ghdl -a --std=08 AluRV32.vhdl
 
 ```
