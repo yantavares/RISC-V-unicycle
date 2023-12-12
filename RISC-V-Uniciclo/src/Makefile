@@ -3,7 +3,7 @@ GHDL=ghdl
 GTKWAVE=gtkwave
 
 # VHDL source files
-SOURCES=../../proj3/ImmediateGenerator.vhdl ../../proj4/AluRV32.vhdl ../../proj5/XREG.vhdl ../../proj6/RAM_RV32.vhdl ../../proj6/ROM_RV32.vhdl PC.vhdl RV32_Processor.vhdl Testbench_RV32_Processor.vhdl
+SOURCES=../../proj3/ImmediateGenerator.vhdl ../../proj4/AluRV32.vhdl ../../proj5/XREG.vhdl ../../proj6/RAM_RV32.vhdl ../../proj6/ROM_RV32.vhdl ./PC/PC.vhdl ./Add_4/Add_4.vhdl ./Adder_32/Adder_32.vhdl ./Alu_Control/Alu_Control.vhdl ./Control/Control.vhdl   RV32_Processor.vhdl 
 
 # Top level entity
 TOP_LEVEL=RV32_Processor
