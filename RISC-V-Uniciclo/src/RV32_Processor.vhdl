@@ -3,7 +3,7 @@ USE ieee.std_logic_1164.all;
 
 LIBRARY work;
 
-ENTITY RiscV_Processor IS
+ENTITY RV32_Processor IS
   PORT (
     clock : IN STD_LOGIC;
     instruction : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -11,9 +11,9 @@ ENTITY RiscV_Processor IS
     rs2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     rd : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     immediate : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
-END RiscV_Processor;
+END RV32_Processor;
 
-ARCHITECTURE bdf_type OF RiscV_Processor IS
+ARCHITECTURE bdf_type OF RV32_Processor IS
 
   -- Internal signals
   SIGNAL instruction_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
