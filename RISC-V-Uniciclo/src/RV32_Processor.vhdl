@@ -1,5 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 LIBRARY work;
 
@@ -17,7 +18,7 @@ ARCHITECTURE bdf_type OF RV32_Processor IS
 
   -- Internal signals
   SIGNAL instruction_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL immOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
+  SIGNAL immOut_signal : signed(31 DOWNTO 0);
   SIGNAL Ain_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL Bin_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL Zout_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -45,13 +46,13 @@ ARCHITECTURE bdf_type OF RV32_Processor IS
   SIGNAL write_or_jal_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
   -- Component Declarations
-COMPONENT genImm
+COMPONENT ImmediateGenerator
 PORT (
-  instr : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-  result_imm : OUT STD_LOGIC_VECTOR (31 DOWNTO 0));
+  instruction : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+  immediate : OUT signed (31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT control_alu
+COMPONENT Alu_Control
 PORT (
   ulaOp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
   funct7 : IN STD_LOGIC;
@@ -60,7 +61,7 @@ PORT (
   opOut : OUT STD_LOGIC_VECTOR(3 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT control
+COMPONENT Control
 PORT (
   op : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
   branch : OUT STD_LOGIC;
@@ -74,7 +75,7 @@ PORT (
   regWrite : OUT STD_LOGIC);
 END COMPONENT;
 
-COMPONENT mux2_32bits
+COMPONENT Mux_2_1
 PORT (
   Sel : IN STD_LOGIC;
   A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -82,7 +83,7 @@ PORT (
   Result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT mux2_5bits
+COMPONENT Mux_2_5bits
 PORT (
   Sel : IN STD_LOGIC;
   A : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
@@ -90,20 +91,20 @@ PORT (
   Result : OUT STD_LOGIC_VECTOR(4 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT adder
+COMPONENT Adder
 PORT (
   A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   B : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT adder4
+COMPONENT Adder_4
 PORT (
   A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT pc
+COMPONENT PC
 PORT (
   addr_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   rst : IN STD_LOGIC;
@@ -111,41 +112,40 @@ PORT (
   addr_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT alu
+COMPONENT ALURV32
 PORT (
   opcode : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-  Ain : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  Bin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  Zout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-  zeroOut : OUT STD_LOGIC);
+  A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+  B : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+  Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+  zero : OUT STD_LOGIC);
 END COMPONENT;
 
-COMPONENT mem_reg
+COMPONENT XREG
+PORT (
+  clk : IN STD_LOGIC;
+  wren : IN STD_LOGIC;
+  rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  rd : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+  ro1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+  ro2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+END COMPONENT;
+
+COMPONENT RAM_RV32
 PORT (
   clock : IN STD_LOGIC;
   we : IN STD_LOGIC;
-  address1x : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-  address2x : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-  write_address : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-  data_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  data1_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-  data2_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+  address : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+  datain : IN STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0'); -- Default value (Avoid undefined value)
+  dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT mem_data
-PORT (
-  clock : IN STD_LOGIC;
-  we : IN STD_LOGIC;
-  re : IN STD_LOGIC;
-  address : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
-  data_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  data_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
-END COMPONENT;
-
-COMPONENT mem_instr
+COMPONENT ROM_RV32
 PORT (
   address : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
-  data_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+  dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
 BEGIN
@@ -154,7 +154,7 @@ BEGIN
   rst_signal <= '0';
 
   -- Control unit instantiation
-  control_inst01 : control
+  control_inst01 : Control
   PORT MAP (
     op => instruction_signal(6 DOWNTO 0),
     aluOp => aluOp_signal,
@@ -168,22 +168,22 @@ BEGIN
     regWrite => regWrite_signal);
 
   -- Immediate generator instantiation
-  genImm_inst02 : genImm
+  genImm_inst02 : ImmediateGenerator
   PORT MAP (
-    instr => instruction_signal,
-    result_imm => immOut_signal);
+    instruction => instruction_signal,
+    immediate => immOut_signal);
 
   -- ALU instantiation
-  alu_inst03 : alu
+  alu_inst03 : ALURV32
   PORT MAP (
     opcode => aluOPout_signal,
-    Ain => Ain_signal,
-    Bin => Bin_signal,
-    Zout => Zout_signal,
-    zeroOut => zeroOut_signal);
+    A => Ain_signal,
+    B => Bin_signal,
+    Z => Zout_signal,
+    zero => zeroOut_signal);
 
   -- ALU control unit instantiation
-  control_alu_inst04 : control_alu
+  control_alu_inst04 : Alu_Control
   PORT MAP (
     ulaOp => aluOp_signal,
     funct7 => instruction_signal(30),
@@ -192,7 +192,7 @@ BEGIN
     opOut => aluOPout_signal);
 
   -- Program counter instantiation
-  pc_inst05 : pc
+  pc_inst05 : PC
   PORT MAP (
     addr_in => addr_in_signal,
     rst => rst_signal,
@@ -200,20 +200,20 @@ BEGIN
     addr_out => addr_out_signal);
 
   -- Adder instantiation
-  adder_inst06 : adder
+  adder_inst06 : Adder
   PORT MAP (
     A => adder_in1_signal,
     B => immOut_signal,
     Z => adderOut_signal);
 
   -- Adder4 instantiation
-  adder4_inst07 : adder4
+  adder4_inst07 : Adder_4
   PORT MAP (
     A => addr_out_signal,
     Z => adder4Out_signal);
 
   -- Multiplexer A instantiation
-  muxA_inst08 : mux2_32bits
+  muxA_inst08 : Mux_2_1
   PORT MAP (
     Sel => branch_signal AND (jal_signal OR zeroOut_signal),
     A => adder4Out_signal,
@@ -221,7 +221,7 @@ BEGIN
     Result => addr_in_signal);
 
   -- Multiplexer B instantiation
-  muxB_inst09 : mux2_32bits
+  muxB_inst09 : Mux_2_1
   PORT MAP (
     Sel => aluSrc_signal,
     A => rs2_signal,
@@ -229,7 +229,7 @@ BEGIN
     Result => Bin_signal);
 
   -- Multiplexer C instantiation
-  muxC_inst10 : mux2_32bits
+  muxC_inst10 : Mux_2_1
   PORT MAP (
     Sel => memToReg_signal,
     A => Zout_signal,
@@ -237,7 +237,7 @@ BEGIN
     Result => write_data_signal);
 
   -- Multiplexer D instantiation
-  muxD_inst11 : mux2_32bits
+  muxD_inst11 : Mux_2_1
   PORT MAP (
     Sel => auipc_signal,
     A => rs1_signal,
@@ -245,7 +245,7 @@ BEGIN
     Result => Ain_signal);
 
   -- Multiplexer G instantiation
-  muxG_inst14 : mux2_32bits
+  muxG_inst14 : Mux_2_1
   PORT MAP (
     Sel => jal_signal AND NOT(instruction_signal(3)),
     A => addr_out_signal,
@@ -253,7 +253,7 @@ BEGIN
     Result => adder_in1_signal);
 
   -- Multiplexer H instantiation
-  muxH_inst15 : mux2_32bits
+  muxH_inst15 : Mux_2_1
   PORT MAP (
     Sel => jal_signal AND instruction_signal(3),
     A => write_data_signal,
@@ -261,32 +261,31 @@ BEGIN
     Result => write_or_jal_signal);
 
   -- Register memory instantiation
-  mem_reg_inst16 : mem_reg
+  mem_reg_inst16 : XREG
   PORT MAP (
-    clock => clock,
-    we => regWrite_signal,
-    address1x => instruction_signal(19 DOWNTO 15),
-    address2x => instruction_signal(24 DOWNTO 20),
-    write_address => instruction_signal(11 DOWNTO 7),
-    data_in => write_or_jal_signal,
-    data1_out => rs1_signal,
-    data2_out => rs2_signal);
+    clk => clock,
+    wren => regWrite_signal,
+    rs1 => instruction_signal(19 DOWNTO 15),
+    rs2 => instruction_signal(24 DOWNTO 20),
+    rd => instruction_signal(11 DOWNTO 7),
+    data => write_or_jal_signal,
+    ro1 => rs1_signal,
+    ro2 => rs2_signal);
 
   -- Data memory instantiation
-  mem_data_inst17 : mem_data
+  mem_data_inst17 : RAM_RV32
   PORT MAP (
     clock => clock,
     we => memWrite_signal,
-    re => memRead_signal,
-    address => Zout_signal(11 DOWNTO 0),
-    data_in => rs2_signal,
-    data_out => data_out_signal);
+    address => Zout_signal(7 DOWNTO 0),
+    datain => rs2_signal,
+    dataout => data_out_signal);
 
   -- Instruction memory instantiation
-  mem_instr_inst18 : mem_instr
+  mem_instr_inst18 : ROM_RV32
   PORT MAP (
     address => addr_out_signal(11 DOWNTO 0),
-    data_out => instruction_signal);
+    dataout => instruction_signal);
 
   -- Output assignments
   instruction <= instruction_signal;
