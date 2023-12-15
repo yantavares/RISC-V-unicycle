@@ -18,18 +18,18 @@ ENTITY Control IS
     regWrite : OUT STD_LOGIC);  -- Permite escrever na memoria de registradores
 END Control;
 
-ARCHITECTURE bdf_type OF Control IS
+ARCHITECTURE behaviour OF Control IS
 
-SIGNAL op_signal : STD_LOGIC_VECTOR (6 DOWNTO 0);
-SIGNAL branch_signal : STD_LOGIC;
-SIGNAL memRead_signal : STD_LOGIC;
-SIGNAL memToReg_signal : STD_LOGIC;
-SIGNAL aluOp_signal : STD_LOGIC_VECTOR(1 DOWNTO 0);
-SIGNAL memWrite_signal : STD_LOGIC;
-SIGNAL aluSrc_signal : STD_LOGIC;
-SIGNAL auipc_signal : STD_LOGIC;
-SIGNAL jal_signal : STD_LOGIC;
-SIGNAL regWrite_signal : STD_LOGIC;
+SIGNAL op_signal : STD_LOGIC_VECTOR (6 DOWNTO 0) := (OTHERS => '0');
+SIGNAL branch_signal : STD_LOGIC := '0';
+SIGNAL memRead_signal : STD_LOGIC := '0';
+SIGNAL memToReg_signal : STD_LOGIC := '0';
+SIGNAL aluOp_signal : STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');
+SIGNAL memWrite_signal : STD_LOGIC := '0';
+SIGNAL aluSrc_signal : STD_LOGIC := '0';
+SIGNAL auipc_signal : STD_LOGIC := '0';
+SIGNAL jal_signal : STD_LOGIC := '0';
+SIGNAL regWrite_signal : STD_LOGIC := '0';
 
 BEGIN
 
@@ -171,4 +171,4 @@ PROCESS (op_signal)
     END CASE;
   END PROCESS;
 
-END bdf_type;
+END behaviour;

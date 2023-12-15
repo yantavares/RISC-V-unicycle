@@ -14,8 +14,8 @@ ENTITY Adder IS
 END ENTITY Adder;
 
 -- Architecture of the Adder
-ARCHITECTURE bdf_type OF Adder IS
+ARCHITECTURE behaviour OF Adder IS
 BEGIN
   -- Add inputs A and B and assign the result to Z
   Z <= STD_LOGIC_VECTOR(UNSIGNED(A) + UNSIGNED(B));
-END bdf_type;
+END behaviour;

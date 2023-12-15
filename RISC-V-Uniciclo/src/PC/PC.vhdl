@@ -12,7 +12,7 @@ ENTITY PC IS
   );
 END ENTITY PC;
 
-ARCHITECTURE bdf_type OF PC IS
+ARCHITECTURE behaviour OF PC IS
 BEGIN
   -- Process triggered by the clock signal
   PROCESS(clk)
@@ -25,4 +25,4 @@ BEGIN
       END IF;
     END IF;
   END PROCESS;
-END bdf_type;
+END behaviour;

@@ -13,36 +13,36 @@ ENTITY RV32_Processor IS
     immediate : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END RV32_Processor;
 
-ARCHITECTURE bdf_type OF RV32_Processor IS
+ARCHITECTURE behaviour OF RV32_Processor IS
 
-  -- Internal signals
-  SIGNAL instruction_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL immOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL Ain_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL Bin_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL Zout_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL zeroOut_signal : STD_LOGIC;
-  SIGNAL aluOP_signal : STD_LOGIC_VECTOR(1 DOWNTO 0);
-  SIGNAL aluOPout_signal : STD_LOGIC_VECTOR(3 DOWNTO 0);
-  SIGNAL branch_signal : STD_LOGIC;
-  SIGNAL memToReg_signal : STD_LOGIC;
-  SIGNAL memRead_signal : STD_LOGIC;
-  SIGNAL memWrite_signal : STD_LOGIC;
-  SIGNAL auipc_signal : STD_LOGIC;
-  SIGNAL aluSrc_signal : STD_LOGIC;
-  SIGNAL jal_signal : STD_LOGIC;
-  SIGNAL regWrite_signal : STD_LOGIC;
-  SIGNAL addr_in_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
+  -- Internal signals with initial values
+  SIGNAL instruction_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL immOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL Ain_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL Bin_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL Zout_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL zeroOut_signal : STD_LOGIC := '0';
+  SIGNAL aluOP_signal : STD_LOGIC_VECTOR(1 DOWNTO 0) := (others => '0');
+  SIGNAL aluOPout_signal : STD_LOGIC_VECTOR(3 DOWNTO 0) := (others => '0');
+  SIGNAL branch_signal : STD_LOGIC := '0';
+  SIGNAL memToReg_signal : STD_LOGIC := '0';
+  SIGNAL memRead_signal : STD_LOGIC := '0';
+  SIGNAL memWrite_signal : STD_LOGIC := '0';
+  SIGNAL auipc_signal : STD_LOGIC := '0';
+  SIGNAL aluSrc_signal : STD_LOGIC := '0';
+  SIGNAL jal_signal : STD_LOGIC := '0';
+  SIGNAL regWrite_signal : STD_LOGIC := '0';
+  SIGNAL addr_in_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
   SIGNAL rst_signal : STD_LOGIC := '0';
-  SIGNAL addr_out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL adderOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL adder4Out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL write_data_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL rs1_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL rs2_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL data_out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL adder_in1_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL write_or_jal_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
+  SIGNAL addr_out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL adderOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL adder4Out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL write_data_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL rs1_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL rs2_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL data_out_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL adder_in1_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+  SIGNAL write_or_jal_signal : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
 
   -- Component Declarations
 COMPONENT NewImmediateGenerator
@@ -143,7 +143,7 @@ END COMPONENT;
 
 COMPONENT ROM_RV32
 PORT (
-  address : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+  address : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
   dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
@@ -283,7 +283,7 @@ BEGIN
   -- Instruction memory instantiation
   mem_instr_inst18 : ROM_RV32
   PORT MAP (
-    address => addr_out_signal(11 DOWNTO 0),
+    address => addr_out_signal(7 DOWNTO 0),
     dataout => instruction_signal);
 
   -- Output assignments
@@ -293,4 +293,4 @@ BEGIN
   rd <= write_data_signal;
   immediate <= immOut_signal;
 
-END bdf_type;
+END behaviour;

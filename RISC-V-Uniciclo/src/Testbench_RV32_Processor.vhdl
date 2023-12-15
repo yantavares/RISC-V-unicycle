@@ -28,11 +28,11 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
     signal test_finished : boolean := false;
 
     --Outputs
-    signal instruction : std_logic_vector(31 downto 0);
-    signal rs1 : std_logic_vector(31 downto 0);
-    signal rs2 : std_logic_vector(31 downto 0);
-    signal rd : std_logic_vector(31 downto 0);
-    signal immediate : std_logic_vector(31 downto 0);
+    signal instruction : std_logic_vector(31 downto 0) := (others => '0');
+    signal rs1 : std_logic_vector(31 downto 0) := (others => '0');
+    signal rs2 : std_logic_vector(31 downto 0) := (others => '0');
+    signal rd : std_logic_vector(31 downto 0) := (others => '0');
+    signal immediate : std_logic_vector(31 downto 0) := (others => '0');
 
     -- Clock period definition
     constant clock_period : time := 10 ns;

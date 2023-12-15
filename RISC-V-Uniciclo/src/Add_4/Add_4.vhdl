@@ -12,11 +12,12 @@ ENTITY Add_4 IS
 END ENTITY Add_4;
 
 -- Architecture of Add_4
-ARCHITECTURE bdf_type OF Add_4 IS
-  SIGNAL A_signal : INTEGER; -- Signal to hold the integer value of A
+ARCHITECTURE behaviour OF Add_4 IS
+  SIGNAL A_signal : UNSIGNED(31 DOWNTO 0) := (others => '0'); -- Signal to hold the unsigned value of A
 
 BEGIN
-  -- Convert A to integer, add 4, then convert back to std_logic_vector
-  A_signal <= TO_INTEGER(UNSIGNED(A)) + 4;
-  Z <= STD_LOGIC_VECTOR(TO_UNSIGNED(A_signal, Z'LENGTH));
-END bdf_type;
+  -- Convert A to unsigned, add 4 with modular arithmetic, then convert back to std_logic_vector
+  A_signal <= UNSIGNED(A) + TO_UNSIGNED(4, A'LENGTH);
+  Z <= STD_LOGIC_VECTOR(A_signal);
+
+END behaviour;

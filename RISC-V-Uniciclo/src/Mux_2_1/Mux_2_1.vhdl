@@ -13,7 +13,7 @@ ENTITY Mux_2_1
 END Mux_2_1
 ;
 
-ARCHITECTURE bdf_type OF Mux_2_1
+ARCHITECTURE behaviour OF Mux_2_1
  IS
 BEGIN
   -- Process to determine the output based on the select signal
@@ -25,4 +25,4 @@ BEGIN
       Result <= B; -- Output B otherwise
     END IF;
   END PROCESS;
-END bdf_type;
+END behaviour;

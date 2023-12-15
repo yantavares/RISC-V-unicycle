@@ -12,10 +12,10 @@ end entity;
 architecture Behavior of NewImmediateGenerator is
     type InstructionFormat is (R_type, I_type, S_type, SB_type, UJ_type, U_type, Unknown_type);
 
-    signal I, S, SB, U, UJ, R : std_logic_vector(31 downto 0);
-    signal instrType : InstructionFormat;
-    signal opcode    : unsigned(7 downto 0);
-    signal funct3    : std_logic_vector(2 downto 0);
+    signal I, S, SB, U, UJ, R : std_logic_vector(31 downto 0) := (others => '0');
+    signal instrType : InstructionFormat := Unknown_type;
+    signal opcode    : unsigned(7 downto 0) := (others => '0');
+    signal funct3    : std_logic_vector(2 downto 0) := (others => '0');
 
 begin
     I  <= std_logic_vector(resize(signed(instruction(31 downto 20)), 32));

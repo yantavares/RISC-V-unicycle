@@ -12,7 +12,7 @@ ENTITY Alu_Control IS
     opOut : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)); -- Output operation code
 END ENTITY Alu_Control;
 
-ARCHITECTURE bdf_type OF Alu_Control IS
+ARCHITECTURE behaviour OF Alu_Control IS
 BEGIN
   PROCESS (funct7, funct3, ulaOp, auipcIn)
   BEGIN
@@ -57,4 +57,4 @@ BEGIN
       WHEN OTHERS => opOut <= "0000";
     END CASE;
   END PROCESS;
-END bdf_type;
+END behaviour;
