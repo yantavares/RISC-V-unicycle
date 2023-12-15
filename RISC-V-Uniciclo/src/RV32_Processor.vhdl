@@ -1,6 +1,5 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 LIBRARY work;
 
@@ -18,7 +17,7 @@ ARCHITECTURE bdf_type OF RV32_Processor IS
 
   -- Internal signals
   SIGNAL instruction_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-  SIGNAL immOut_signal : signed(31 DOWNTO 0);
+  SIGNAL immOut_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL Ain_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL Bin_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL Zout_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -46,10 +45,10 @@ ARCHITECTURE bdf_type OF RV32_Processor IS
   SIGNAL write_or_jal_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
   -- Component Declarations
-COMPONENT ImmediateGenerator
+COMPONENT NewImmediateGenerator
 PORT (
   instruction : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-  immediate : OUT signed (31 DOWNTO 0));
+  immediate : OUT STD_LOGIC_VECTOR (31 DOWNTO 0));
 END COMPONENT;
 
 COMPONENT Alu_Control
@@ -98,7 +97,7 @@ PORT (
   Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT Adder_4
+COMPONENT Add_4
 PORT (
   A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
@@ -168,7 +167,7 @@ BEGIN
     regWrite => regWrite_signal);
 
   -- Immediate generator instantiation
-  genImm_inst02 : ImmediateGenerator
+  genImm_inst02 : NewImmediateGenerator
   PORT MAP (
     instruction => instruction_signal,
     immediate => immOut_signal);
@@ -207,7 +206,7 @@ BEGIN
     Z => adderOut_signal);
 
   -- Adder4 instantiation
-  adder4_inst07 : Adder_4
+  adder4_inst07 : Add_4
   PORT MAP (
     A => addr_out_signal,
     Z => adder4Out_signal);

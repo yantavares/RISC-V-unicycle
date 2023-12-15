@@ -1,46 +1,49 @@
 v 4
-file . "Testbench_RV32_Processor.vhdl" "9a925de0dab29945f8068a2a4570095260f4b640" "20231215001900.038":
-  entity testbench_rv32_processor at 1( 0) + 0 on 321;
-  architecture behavior of testbench_rv32_processor at 10( 238) + 0 on 322;
-file . "RV32_Processor.vhdl" "a4ab24587a0f28a74f24535ff040183f01176599" "20231215001900.037":
-  entity rv32_processor at 1( 0) + 0 on 319;
-  architecture bdf_type of rv32_processor at 16( 379) + 0 on 320;
-file . "./Control/Control.vhdl" "b008ebb11bc6e5afc3dff3719c4d4b9c062bbab5" "20231215001900.033":
-  entity control at 1( 0) + 0 on 311;
-  architecture bdf_type of control at 21( 754) + 0 on 312;
-file . "./Alu_Control/Alu_Control.vhdl" "a5c7317db59fd151218f1c50b33fb18709f9d816" "20231215001900.031":
-  entity alu_control at 1( 0) + 0 on 309;
-  architecture bdf_type of alu_control at 15( 495) + 0 on 310;
-file . "./Adder/Adder.vhdl" "0ea4a7ae2a9371948c0f6ceed968856e9de35931" "20231215001900.030":
-  entity adder at 2( 23) + 0 on 307;
-  architecture bdf_type of adder at 17( 451) + 0 on 308;
-file . "./Add_4/Add_4.vhdl" "e5dec3c29a7b9981292adb7544101024ef4f63ff" "20231215001900.029":
-  entity add_4 at 2( 23) + 0 on 305;
-  architecture bdf_type of add_4 at 15( 390) + 0 on 306;
-file . "./PC/PC.vhdl" "ee97db93b4fa2e2a738c535fe1d8fe74f17a521e" "20231215001900.028":
-  entity pc at 1( 0) + 0 on 303;
-  architecture bdf_type of pc at 15( 466) + 0 on 304;
-file . "../../proj6/src/ROM_RV32.vhdl" "300efb3750352bcc29989f5a276027e6a4c68879" "20231215001900.027":
-  entity rom_rv32 at 2( 33) + 0 on 301;
-  architecture rtl of rom_rv32 at 14( 285) + 0 on 302;
-file . "../../proj6/src/RAM_RV32.vhdl" "f54413048505057e890d50682ea9c1a33e7e1e88" "20231215001900.025":
-  entity ram_rv32 at 2( 33) + 0 on 299;
-  architecture rtl of ram_rv32 at 16( 441) + 0 on 300;
-file . "../../proj5/src/XREG.vhdl" "60759e307c1e596ab11d26977e063f02e724d3ad" "20231215001900.023":
-  entity xreg at 1( 0) + 0 on 297;
-  architecture behavioral of xreg at 17( 502) + 0 on 298;
-file . "../../proj4/src/AluRV32.vhdl" "4f795a8250217756f564735ac2979d5e8e107701" "20231215001900.022":
-  entity alurv32 at 1( 0) + 0 on 295;
-  architecture behavior of alurv32 at 14( 306) + 0 on 296;
-file . "../../proj3/src/ImmediateGenerator.vhdl" "79d4c05faad3818b55a424c8fd9567bdf9d11729" "20231215001900.019":
-  entity immediategenerator at 5( 166) + 0 on 293;
-  architecture behavior of immediategenerator at 16( 460) + 0 on 294;
-file . "./Mux_2_1/Mux_2_1.vhdl" "ae5809b6fdef153b441e756ea79e239f0a0087c4" "20231215001900.034":
-  entity mux_2_1 at 1( 0) + 0 on 313;
-  architecture bdf_type of mux_2_1 at 16( 388) + 0 on 314;
-file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "601640ae37a90404d5acd1abf23e17da94f03ae7" "20231215001900.034":
-  entity mux_2_5bits at 1( 0) + 0 on 315;
-  architecture bdf_type of mux_2_5bits at 14( 394) + 0 on 316;
-file . "./Mux_8_1/Mux_8_1.vhdl" "ced66e95d06327cc2f166bf38b607c6f3ce80796" "20231215001900.035":
-  entity mux_8_1 at 1( 0) + 0 on 317;
-  architecture bdf_type of mux_8_1 at 13( 397) + 0 on 318;
+file . "./New_ImmediateGenerator/New_ImmediateGenerator.vhdl" "96fec1537113c817ff5b3b607e94eb19ef969c74" "20231215002645.679":
+  entity immediategenerator at 1( 0) + 0 on 347;
+  architecture behavior of immediategenerator at 12( 294) + 0 on 348;
+file . "./Mux_8_1/Mux_8_1.vhdl" "ced66e95d06327cc2f166bf38b607c6f3ce80796" "20231215002917.497":
+  entity mux_8_1 at 1( 0) + 0 on 405;
+  architecture bdf_type of mux_8_1 at 13( 397) + 0 on 406;
+file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "601640ae37a90404d5acd1abf23e17da94f03ae7" "20231215002917.497":
+  entity mux_2_5bits at 1( 0) + 0 on 403;
+  architecture bdf_type of mux_2_5bits at 14( 394) + 0 on 404;
+file . "./Mux_2_1/Mux_2_1.vhdl" "ae5809b6fdef153b441e756ea79e239f0a0087c4" "20231215002917.496":
+  entity mux_2_1 at 1( 0) + 0 on 401;
+  architecture bdf_type of mux_2_1 at 16( 388) + 0 on 402;
+file . "../../proj4/src/AluRV32.vhdl" "4f795a8250217756f564735ac2979d5e8e107701" "20231215002917.482":
+  entity alurv32 at 1( 0) + 0 on 383;
+  architecture behavior of alurv32 at 14( 306) + 0 on 384;
+file . "../../proj5/src/XREG.vhdl" "60759e307c1e596ab11d26977e063f02e724d3ad" "20231215002917.484":
+  entity xreg at 1( 0) + 0 on 385;
+  architecture behavioral of xreg at 17( 502) + 0 on 386;
+file . "../../proj6/src/RAM_RV32.vhdl" "f54413048505057e890d50682ea9c1a33e7e1e88" "20231215002917.486":
+  entity ram_rv32 at 2( 33) + 0 on 387;
+  architecture rtl of ram_rv32 at 16( 441) + 0 on 388;
+file . "../../proj6/src/ROM_RV32.vhdl" "300efb3750352bcc29989f5a276027e6a4c68879" "20231215002917.488":
+  entity rom_rv32 at 2( 33) + 0 on 389;
+  architecture rtl of rom_rv32 at 14( 285) + 0 on 390;
+file . "./PC/PC.vhdl" "ee97db93b4fa2e2a738c535fe1d8fe74f17a521e" "20231215002917.490":
+  entity pc at 1( 0) + 0 on 391;
+  architecture bdf_type of pc at 15( 466) + 0 on 392;
+file . "./Add_4/Add_4.vhdl" "e5dec3c29a7b9981292adb7544101024ef4f63ff" "20231215002917.491":
+  entity add_4 at 2( 23) + 0 on 393;
+  architecture bdf_type of add_4 at 15( 390) + 0 on 394;
+file . "./Adder/Adder.vhdl" "0ea4a7ae2a9371948c0f6ceed968856e9de35931" "20231215002917.492":
+  entity adder at 2( 23) + 0 on 395;
+  architecture bdf_type of adder at 17( 451) + 0 on 396;
+file . "./Alu_Control/Alu_Control.vhdl" "a5c7317db59fd151218f1c50b33fb18709f9d816" "20231215002917.493":
+  entity alu_control at 1( 0) + 0 on 397;
+  architecture bdf_type of alu_control at 15( 495) + 0 on 398;
+file . "./Control/Control.vhdl" "b008ebb11bc6e5afc3dff3719c4d4b9c062bbab5" "20231215002917.495":
+  entity control at 1( 0) + 0 on 399;
+  architecture bdf_type of control at 21( 754) + 0 on 400;
+file . "RV32_Processor.vhdl" "67ee027c92a2682130e821bb7979e05e95aa4238" "20231215002917.501":
+  entity rv32_processor at 1( 0) + 0 on 409;
+  architecture bdf_type of rv32_processor at 16( 379) + 0 on 410;
+file . "Testbench_RV32_Processor.vhdl" "9a925de0dab29945f8068a2a4570095260f4b640" "20231215002917.503":
+  entity testbench_rv32_processor at 1( 0) + 0 on 411;
+  architecture behavior of testbench_rv32_processor at 10( 238) + 0 on 412;
+file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "797ca9f07a5d92246f4beefca2501af271769da1" "20231215002917.499":
+  entity newimmediategenerator at 1( 0) + 0 on 407;
+  architecture behavior of newimmediategenerator at 12( 297) + 0 on 408;
