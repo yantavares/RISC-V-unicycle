@@ -134,7 +134,6 @@ END COMPONENT;
 
 COMPONENT NewXREG
   PORT (
-    clk : IN STD_LOGIC;
     wren : IN STD_LOGIC;
     rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
     rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
@@ -265,7 +264,6 @@ BEGIN
 
   mem_reg_inst16 : NewXREG
   PORT MAP (
-    clk => clock,
     wren => regWrite_signal,
     rs1 => instruction_signal(19 DOWNTO 15),
     rs2 => instruction_signal(24 DOWNTO 20),

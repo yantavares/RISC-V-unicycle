@@ -6,7 +6,6 @@ LIBRARY work;
 
 ENTITY NewXREG IS
   PORT (
-    clk : IN STD_LOGIC;
     wren : IN STD_LOGIC;
     rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
     rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
@@ -16,7 +15,7 @@ ENTITY NewXREG IS
     ro2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END NewXREG;
 
-ARCHITECTURE bdf_type OF NewXREG IS
+ARCHITECTURE behavior OF NewXREG IS
 
 CONSTANT mem_depth : NATURAL := 32;
 CONSTANT mem_width : NATURAL := 32;
@@ -27,8 +26,7 @@ SIGNAL address1_signal : INTEGER := 0;
 SIGNAL address2_signal : INTEGER := 0;
 SIGNAL write_address_signal : INTEGER := 0;
 
-SIGNAL breg : mem_type := (x"00000000",
-                           others => (others => '0'));
+SIGNAL breg : mem_type := (x"00000000", others => (others => '0'));
 
 BEGIN
 
@@ -38,11 +36,11 @@ BEGIN
   ro1 <= breg(address1_signal);
   ro2 <= breg(address2_signal);
 
-  PROCESS (clk, wren, write_address_signal)
+  PROCESS (wren, write_address_signal)
   BEGIN
-    IF RISING_EDGE(clk) AND (wren = '1') AND (write_address_signal /= 0) THEN
+    IF (wren = '1') AND (write_address_signal /= 0) THEN
       breg(write_address_signal) <= data;
     END IF;
   END PROCESS;
 
-END bdf_type;
+END behavior;
