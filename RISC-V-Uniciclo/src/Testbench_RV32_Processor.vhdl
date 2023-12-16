@@ -3,7 +3,7 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
 ENTITY Testbench_RV32_Processor IS
-    -- Testbench has no ports.
+-- Testbench has no ports.
 END Testbench_RV32_Processor;
 
 ARCHITECTURE behavior OF Testbench_RV32_Processor IS 
@@ -11,20 +11,27 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
     -- Component Declaration for the Unit Under Test (UUT)
     COMPONENT RV32_Processor
     PORT(
-         clock      : IN  std_logic;
-         instruction: OUT std_logic_vector(31 downto 0);
-         rs1        : OUT std_logic_vector(31 downto 0);
-         rs2        : OUT std_logic_vector(31 downto 0);
-         rd         : OUT std_logic_vector(31 downto 0);
-         immediate  : OUT std_logic_vector(31 downto 0)
-    );
+         clock : IN  std_logic;
+         instruction : OUT  std_logic_vector(31 downto 0);
+         rs1 : OUT  std_logic_vector(31 downto 0);
+         rs2 : OUT  std_logic_vector(31 downto 0);
+         rd : OUT  std_logic_vector(31 downto 0);
+         immediate : OUT  std_logic_vector(31 downto 0)
+        );
     END COMPONENT;
-    
-    -- Inputs
-    signal clock : std_logic := '0';
 
     -- End of simulation flag
     signal test_finished : boolean := false;
+    
+    --Inputs
+    signal clock : std_logic := '0';
+
+    --Outputs
+    signal instruction : std_logic_vector(31 downto 0);
+    signal rs1 : std_logic_vector(31 downto 0);
+    signal rs2 : std_logic_vector(31 downto 0);
+    signal rd : std_logic_vector(31 downto 0);
+    signal immediate : std_logic_vector(31 downto 0);
 
     -- Clock period definition
     constant clock_period : time := 10 ns;
@@ -32,12 +39,12 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
 BEGIN 
     -- Instantiate the Unit Under Test (UUT)
     uut: RV32_Processor PORT MAP (
-          clock       => clock,
-          instruction => open,  -- Not connected in this testbench
-          rs1         => open,  -- Not connected in this testbench
-          rs2         => open,  -- Not connected in this testbench
-          rd          => open,  -- Not connected in this testbench
-          immediate   => open   -- Not connected in this testbench
+          clock => clock,
+          instruction => instruction,
+          rs1 => rs1,
+          rs2 => rs2,
+          rd => rd,
+          immediate => immediate
         );
 
     -- Clock process
@@ -51,18 +58,21 @@ BEGIN
         end loop;
         wait;
     end process;
-
-    -- Testbench control process
-    control_process: process
+    
+    -- Test stimulus process
+    stimulus: process
     begin
-        -- Wait for a specific amount of time to simulate
-        wait for 100 * clock_period;
+        -- Add your test stimulus here
+        -- For example, force some inputs and monitor the outputs
+        -- wait for some time or clock cycles
+        -- For now, let's just run it for some cycles and then stop
 
-        -- Set the flag to finish the simulation
+        wait for 100 * clock_period;  -- Wait for 100 clock cycles
+
         test_finished <= true;
 
-        wait;
-
+        -- End of simulation
+        wait;  -- will wait forever
     end process;
 
 END behavior;

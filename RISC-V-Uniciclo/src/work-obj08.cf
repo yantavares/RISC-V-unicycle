@@ -1,46 +1,46 @@
 v 4
-file . "Testbench_RV32_Processor.vhdl" "cde21bb8486a09273dad0ecaff0ff2ead906487b" "20231216190840.879":
-  entity testbench_rv32_processor at 1( 0) + 0 on 699;
-  architecture behavior of testbench_rv32_processor at 9( 167) + 0 on 700;
-file . "RV32_Processor.vhdl" "4b474f474f7a8afc6fbba53a7a564c41f33540fa" "20231216190840.877":
-  entity rv32_processor at 1( 0) + 0 on 697;
-  architecture bdf_type of rv32_processor at 16( 379) + 0 on 698;
-file . "./NewALU/NewALU.vhdl" "3d24cdd58f7ba813227edacaf102ba574d0848f9" "20231216190840.875":
-  entity newalu at 1( 0) + 0 on 695;
-  architecture bdf_type of newalu at 16( 324) + 0 on 696;
-file . "./NewXREG/NewXREG.vhdl" "fcf0bbcd3d5663ee3be993ea81515f3f80d89c56" "20231216190840.873":
-  entity newxreg at 1( 0) + 0 on 693;
-  architecture bdf_type of newxreg at 19( 439) + 0 on 694;
-file . "./NewROM/NewROM.vhdl" "eb83aecede23132f60b2ec0b9f1f4d39cd401b20" "20231216190840.872":
-  entity newrom at 1( 0) + 0 on 691;
-  architecture bdf_type of newrom at 14( 242) + 0 on 692;
-file . "./NewRAM/NewRAM.vhdl" "6ccf63713df488c3a5cd64044ab8c3010d6cfceb" "20231216190840.870":
-  entity newram at 1( 0) + 0 on 689;
-  architecture bdf_type of newram at 18( 376) + 0 on 690;
-file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "ba9956cc556db5389085d3a5b48dc1b0b749d41c" "20231216190840.868":
-  entity newimmediategenerator at 1( 0) + 0 on 687;
-  architecture bdf_type of newimmediategenerator at 11( 223) + 0 on 688;
-file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216190840.866":
-  entity mux_8_1 at 1( 0) + 0 on 685;
-  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 686;
-file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216190840.865":
-  entity mux_2_5bits at 1( 0) + 0 on 683;
-  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 684;
-file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216190840.864":
-  entity mux_2_1 at 1( 0) + 0 on 681;
-  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 682;
-file . "./Control/Control.vhdl" "e38685ec270787e16bcedfa04966f04586f2283f" "20231216190840.863":
-  entity control at 1( 0) + 0 on 679;
-  architecture bdf_type of control at 21( 750) + 0 on 680;
-file . "./Alu_Control/Alu_Control.vhdl" "f03057afb99d1ae00d5b97ca552800e131e6a29b" "20231216190840.861":
-  entity alu_control at 1( 0) + 0 on 677;
-  architecture bdf_type of alu_control at 16( 348) + 0 on 678;
-file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216190840.860":
-  entity adder at 1( 0) + 0 on 675;
-  architecture bdf_type of adder at 14( 257) + 0 on 676;
-file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216190840.858":
-  entity add_4 at 1( 0) + 0 on 673;
-  architecture bdf_type of add_4 at 12( 203) + 0 on 674;
-file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216190840.856":
-  entity pc at 1( 0) + 0 on 671;
-  architecture bdf_type of pc at 15( 285) + 0 on 672;
+file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216191419.017":
+  entity pc at 1( 0) + 0 on 761;
+  architecture bdf_type of pc at 15( 285) + 0 on 762;
+file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216191419.019":
+  entity add_4 at 1( 0) + 0 on 763;
+  architecture bdf_type of add_4 at 12( 203) + 0 on 764;
+file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216191419.021":
+  entity adder at 1( 0) + 0 on 765;
+  architecture bdf_type of adder at 14( 257) + 0 on 766;
+file . "./Alu_Control/Alu_Control.vhdl" "f03057afb99d1ae00d5b97ca552800e131e6a29b" "20231216191419.022":
+  entity alu_control at 1( 0) + 0 on 767;
+  architecture bdf_type of alu_control at 16( 348) + 0 on 768;
+file . "./Control/Control.vhdl" "e38685ec270787e16bcedfa04966f04586f2283f" "20231216191419.024":
+  entity control at 1( 0) + 0 on 769;
+  architecture bdf_type of control at 21( 750) + 0 on 770;
+file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216191419.025":
+  entity mux_2_1 at 1( 0) + 0 on 771;
+  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 772;
+file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216191419.026":
+  entity mux_2_5bits at 1( 0) + 0 on 773;
+  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 774;
+file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216191419.027":
+  entity mux_8_1 at 1( 0) + 0 on 775;
+  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 776;
+file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "ba9956cc556db5389085d3a5b48dc1b0b749d41c" "20231216191419.029":
+  entity newimmediategenerator at 1( 0) + 0 on 777;
+  architecture bdf_type of newimmediategenerator at 11( 223) + 0 on 778;
+file . "./NewRAM/NewRAM.vhdl" "6ccf63713df488c3a5cd64044ab8c3010d6cfceb" "20231216191419.031":
+  entity newram at 1( 0) + 0 on 779;
+  architecture bdf_type of newram at 18( 376) + 0 on 780;
+file . "./NewROM/NewROM.vhdl" "eb83aecede23132f60b2ec0b9f1f4d39cd401b20" "20231216191419.033":
+  entity newrom at 1( 0) + 0 on 781;
+  architecture bdf_type of newrom at 14( 242) + 0 on 782;
+file . "./NewXREG/NewXREG.vhdl" "fcf0bbcd3d5663ee3be993ea81515f3f80d89c56" "20231216191419.034":
+  entity newxreg at 1( 0) + 0 on 783;
+  architecture bdf_type of newxreg at 19( 439) + 0 on 784;
+file . "./NewALU/NewALU.vhdl" "3d24cdd58f7ba813227edacaf102ba574d0848f9" "20231216191419.036":
+  entity newalu at 1( 0) + 0 on 785;
+  architecture bdf_type of newalu at 16( 324) + 0 on 786;
+file . "RV32_Processor.vhdl" "4b474f474f7a8afc6fbba53a7a564c41f33540fa" "20231216191419.038":
+  entity rv32_processor at 1( 0) + 0 on 787;
+  architecture bdf_type of rv32_processor at 16( 379) + 0 on 788;
+file . "Testbench_RV32_Processor.vhdl" "61434ab727f0cbc58654c36877098f5c5cd91fba" "20231216191419.040":
+  entity testbench_rv32_processor at 1( 0) + 0 on 789;
+  architecture behavior of testbench_rv32_processor at 9( 163) + 0 on 790;
