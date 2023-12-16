@@ -1,25 +1,27 @@
 LIBRARY ieee;
-USE ieee.std_logic_1164.all; -- Use the standard logic package
+USE ieee.std_logic_1164.all;
 
--- Entity declaration for a 2-to-1, 5-bit multiplexer
+LIBRARY work;
+
 ENTITY Mux_2_5bits IS
   PORT (
-    Sel : IN STD_LOGIC; -- Select signal
-    A : IN STD_LOGIC_VECTOR(4 DOWNTO 0); -- Input A
-    B : IN STD_LOGIC_VECTOR(4 DOWNTO 0); -- Input B
-    Result : OUT STD_LOGIC_VECTOR(4 DOWNTO 0) -- Output result
-  );
+    Sel : IN STD_LOGIC;
+    A : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+    B : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+    Result : OUT STD_LOGIC_VECTOR(4 DOWNTO 0));
 END Mux_2_5bits;
 
-ARCHITECTURE behaviour OF Mux_2_5bits IS
+ARCHITECTURE bdf_type OF Mux_2_5bits IS
+
 BEGIN
-  -- Process to determine the output based on the select signal
+
   PROCESS (Sel, A, B)
   BEGIN
     IF Sel = '0' THEN
-      Result <= A; -- Output A if Sel is 0
+      Result <= A;
     ELSE
-      Result <= B; -- Output B otherwise
+      Result <= B;
     END IF;
   END PROCESS;
-END behaviour;
+
+END bdf_type;

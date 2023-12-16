@@ -41,12 +41,8 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
     file code_file : text open read_mode is "code.txt";
     file data_file : text open read_mode is "data.txt";
 
-    -- Constant for initial delay
-    constant initial_delay : integer := 2; -- Replace with the number of clock cycles to wait before starting the simulation
-
 
 BEGIN 
-
     -- Instantiate the Unit Under Test (UUT)
     uut: RV32_Processor PORT MAP (
           clock => clock,
@@ -76,11 +72,10 @@ BEGIN
         variable instruction_value, data_value : std_logic_vector(31 downto 0);
         variable delay_counter : integer := 0;
     begin
+        report "Starting simulation" severity note;
         -- Initial delay to allow signal stabilization
-        while delay_counter < initial_delay loop
-            wait for clock_period;
-            delay_counter := delay_counter + 1;
-        end loop;
+
+        report "Step1" severity note;
 
         -- Read from code.txt and simulate
         while not endfile(code_file) loop
@@ -98,6 +93,8 @@ BEGIN
             instruction <= instruction_value;
             wait for clock_period; -- Wait for a clock cycle
         end loop;
+
+        report "Step2" severity note;
     
         -- Read from data.txt and process
         while not endfile(data_file) loop

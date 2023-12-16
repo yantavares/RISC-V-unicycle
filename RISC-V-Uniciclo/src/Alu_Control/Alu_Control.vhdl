@@ -1,33 +1,35 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
--- Entity declaration for the ALU control unit
+LIBRARY work;
+
 ENTITY Alu_Control IS
   GENERIC (data_width : NATURAL := 32);
   PORT (
-    ulaOp : IN STD_LOGIC_VECTOR(1 DOWNTO 0); -- Operation code
-    funct7 : IN STD_LOGIC; -- Function code (7-bit)
-    auipcIn : IN STD_LOGIC; -- AUIPC input signal
-    funct3 : IN STD_LOGIC_VECTOR(2 DOWNTO 0); -- Function code (3-bit)
-    opOut : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)); -- Output operation code
+    ulaOp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    funct7 : IN STD_LOGIC;
+    auipcIn : IN STD_LOGIC;
+    funct3 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    opOut : OUT STD_LOGIC_VECTOR(3 DOWNTO 0));
 END ENTITY Alu_Control;
 
-ARCHITECTURE behaviour OF Alu_Control IS
+ARCHITECTURE bdf_type OF Alu_Control IS
+
 BEGIN
+
   PROCESS (funct7, funct3, ulaOp, auipcIn)
   BEGIN
+
     CASE ulaOp IS
+
       WHEN "00" =>
         CASE funct3 IS
-          -- Mapping funct3 and funct7 to specific ALU operations
-          -- The comments indicate the corresponding operation
           WHEN "000" =>
             IF funct7 = '0' THEN
               opOut <= "0000";  -- ADD
             ELSE
               opOut <= "0001";  -- SUB
             END IF;
-          -- Other operations follow the same pattern
           WHEN "001" => opOut <= "0101";  -- SLL
           WHEN "010" => opOut <= "1000";  -- SLT
           WHEN "011" => opOut <= "1001";  -- SLTU
@@ -42,19 +44,41 @@ BEGIN
           WHEN "111" => opOut <= "0010";  -- AND
           WHEN OTHERS => opOut <= "0000";
         END CASE;
-      -- Additional cases for other ulaOp values
-      WHEN "01" => -- Similar structure as above
-        -- [similar case structure for ulaOp "01"]
-      WHEN "10" => -- Branch operations
-        -- [similar case structure for ulaOp "10"]
+      WHEN "01" =>
+        CASE funct3 IS
+          WHEN "000" => opOut <= "0000";  -- ADDi
+          WHEN "001" => opOut <= "0101";  -- SLLi
+          WHEN "010" => opOut <= "1000";  -- SLTi
+          WHEN "011" => opOut <= "1001";  -- SLTUi
+          WHEN "100" => opOut <= "0100";  -- XORi
+          WHEN "101" =>
+            IF funct7 = '0' THEN
+              opOut <= "0110";  -- SRLi
+            ELSE
+              opOut <= "0111";  -- SRAi
+            END IF;
+          WHEN "110" => opOut <= "0011";  -- ORi
+          WHEN "111" => opOut <= "0010";  -- ANDi
+          WHEN OTHERS => opOut <= "0000";
+        END CASE;
+      WHEN "10" =>
+        CASE funct3 IS
+          WHEN "000" => opOut <= "1100";  -- BEQ
+          WHEN "001" => opOut <= "1101";  -- BNE
+          WHEN "100" => opOut <= "1000";  -- BLT
+          WHEN "101" => opOut <= "1010";  -- BGE
+          WHEN OTHERS => opOut <= "0000";
+        END CASE;
       WHEN "11" =>
-        -- Load Upper Immediate and Add Upper Immediate to PC operations
         IF auipcIn = '0' THEN
           opOut <= "1110";  -- LUi
         ELSE
           opOut <= "1111";  -- AUiPC
         END IF;
       WHEN OTHERS => opOut <= "0000";
+
     END CASE;
+
   END PROCESS;
-END behaviour;
+
+END bdf_type;

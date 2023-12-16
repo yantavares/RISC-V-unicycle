@@ -14,22 +14,22 @@ ENTITY Control IS
     jal : OUT STD_LOGIC;
     aluOp : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);  -- 2 bits da aluOp
     memWrite : OUT STD_LOGIC;  -- Permite a escrita na memoria
-    aluSrc : OUT STD_LOGIC;  -- Se a     segunda entrada na ula vira do imediato ou nao
+    aluSrc : OUT STD_LOGIC;  -- Se a segunda entrada na ula vira do imediato ou nao
     regWrite : OUT STD_LOGIC);  -- Permite escrever na memoria de registradores
 END Control;
 
-ARCHITECTURE behaviour OF Control IS
+ARCHITECTURE bdf_type OF Control IS
 
-SIGNAL op_signal : STD_LOGIC_VECTOR (6 DOWNTO 0) := (OTHERS => '0');
-SIGNAL branch_signal : STD_LOGIC := '0';
-SIGNAL memRead_signal : STD_LOGIC := '0';
-SIGNAL memToReg_signal : STD_LOGIC := '0';
-SIGNAL aluOp_signal : STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');
-SIGNAL memWrite_signal : STD_LOGIC := '0';
-SIGNAL aluSrc_signal : STD_LOGIC := '0';
-SIGNAL auipc_signal : STD_LOGIC := '0';
-SIGNAL jal_signal : STD_LOGIC := '0';
-SIGNAL regWrite_signal : STD_LOGIC := '0';
+SIGNAL op_signal : STD_LOGIC_VECTOR (6 DOWNTO 0);
+SIGNAL branch_signal : STD_LOGIC;
+SIGNAL memRead_signal : STD_LOGIC;
+SIGNAL memToReg_signal : STD_LOGIC;
+SIGNAL aluOp_signal : STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL memWrite_signal : STD_LOGIC;
+SIGNAL aluSrc_signal : STD_LOGIC;
+SIGNAL auipc_signal : STD_LOGIC;
+SIGNAL jal_signal : STD_LOGIC;
+SIGNAL regWrite_signal : STD_LOGIC;
 
 BEGIN
 
@@ -49,7 +49,7 @@ PROCESS (op_signal)
 
     CASE op_signal IS
 
-      -- type R
+      -- tipo R
       WHEN "0110011" =>
         branch_signal <= '0';
         memRead_signal <= '0';
@@ -171,4 +171,4 @@ PROCESS (op_signal)
     END CASE;
   END PROCESS;
 
-END behaviour;
+END bdf_type;
