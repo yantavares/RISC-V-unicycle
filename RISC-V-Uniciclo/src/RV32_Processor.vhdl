@@ -111,33 +111,34 @@ PORT (
   addr_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT ALURV32
+COMPONENT NewALU
 PORT (
   opcode : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-  A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  B : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  Z : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-  zero : OUT STD_LOGIC);
+  A      : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+  B      : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+  Z      : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+  zero   : OUT STD_LOGIC);
 END COMPONENT;
 
-COMPONENT XREG
+COMPONENT NewXREG
 PORT (
-  clk : IN STD_LOGIC;
+  clk  : IN STD_LOGIC;
   wren : IN STD_LOGIC;
-  rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-  rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-  rd : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  rs1  : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  rs2  : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+  rd   : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
   data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-  ro1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-  ro2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+  ro1  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+  ro2  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT RAM_RV32
+COMPONENT NewRAM
 PORT (
   clock : IN STD_LOGIC;
   we : IN STD_LOGIC;
+  re : IN STD_LOGIC;
   address : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-  datain : IN STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0'); -- Default value (Avoid undefined value)
+  datain : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
   dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END COMPONENT;
 
@@ -173,7 +174,7 @@ BEGIN
     immediate => immOut_signal);
 
   -- ALU instantiation
-  alu_inst03 : ALURV32
+  alu_inst03 : NewALU
   PORT MAP (
     opcode => aluOPout_signal,
     A => Ain_signal,
@@ -260,7 +261,7 @@ BEGIN
     Result => write_or_jal_signal);
 
   -- Register memory instantiation
-  mem_reg_inst16 : XREG
+  mem_reg_inst16 : NewXREG
   PORT MAP (
     clk => clock,
     wren => regWrite_signal,
@@ -272,10 +273,11 @@ BEGIN
     ro2 => rs2_signal);
 
   -- Data memory instantiation
-  mem_data_inst17 : RAM_RV32
+  mem_data_inst17 : NewRAM
   PORT MAP (
     clock => clock,
     we => memWrite_signal,
+    re => memRead_signal,
     address => Zout_signal(7 DOWNTO 0),
     datain => rs2_signal,
     dataout => data_out_signal);

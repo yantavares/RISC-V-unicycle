@@ -8,7 +8,7 @@ entity RAM_RV32 is
         clock   : in std_logic;
         we      : in std_logic;
         address : in std_logic_vector(7 downto 0);
-        datain  : in std_logic_vector(31 downto 0) := (others => '0'); -- Default value (Avoid undefined value)
+        datain  : in std_logic_vector(31 downto 0);
         dataout : out std_logic_vector(31 downto 0)
     );
 end entity RAM_RV32;

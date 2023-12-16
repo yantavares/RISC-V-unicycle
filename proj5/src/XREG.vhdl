@@ -21,7 +21,7 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if wren = '1' and to_integer(unsigned(rd)) /= 0 then
+            if wren = '1' and to_integer(unsigned(rd)) >= 0 and to_integer(unsigned(rd)) < 32 then
                 registers(to_integer(unsigned(rd))) <= data;
             end if;
 

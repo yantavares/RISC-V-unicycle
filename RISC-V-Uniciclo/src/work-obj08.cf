@@ -1,49 +1,46 @@
 v 4
-file . "./New_ImmediateGenerator/New_ImmediateGenerator.vhdl" "96fec1537113c817ff5b3b607e94eb19ef969c74" "20231215002645.679":
-  entity immediategenerator at 1( 0) + 0 on 347;
-  architecture behavior of immediategenerator at 12( 294) + 0 on 348;
-file . "./Mux_8_1/Mux_8_1.vhdl" "73d9a44da8c7a5f9395796c21f8e1cb4378d1fcf" "20231215012219.274":
-  entity mux_8_1 at 1( 0) + 0 on 1005;
-  architecture behaviour of mux_8_1 at 13( 397) + 0 on 1006;
-file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "d10f64ddb19ae0097b0c9fe62987fa5d59fd9d16" "20231215012219.274":
-  entity mux_2_5bits at 1( 0) + 0 on 1003;
-  architecture behaviour of mux_2_5bits at 14( 394) + 0 on 1004;
-file . "./Mux_2_1/Mux_2_1.vhdl" "285a47da5e19968910801f43c47b330051a22a84" "20231215012219.273":
-  entity mux_2_1 at 1( 0) + 0 on 1001;
-  architecture behaviour of mux_2_1 at 16( 388) + 0 on 1002;
-file . "../../proj4/src/AluRV32.vhdl" "4f795a8250217756f564735ac2979d5e8e107701" "20231215012219.258":
-  entity alurv32 at 1( 0) + 0 on 983;
-  architecture behavior of alurv32 at 14( 306) + 0 on 984;
-file . "../../proj5/src/XREG.vhdl" "6415070a2660a0c0f5b6f3bec3afa501b7a47c2e" "20231215012219.260":
-  entity xreg at 1( 0) + 0 on 985;
-  architecture behavioral of xreg at 17( 502) + 0 on 986;
-file . "../../proj6/src/RAM_RV32.vhdl" "da2d10134e6afbe69ec1dadc5e16c66102cc32da" "20231215012219.262":
-  entity ram_rv32 at 2( 33) + 0 on 987;
-  architecture rtl of ram_rv32 at 16( 441) + 0 on 988;
-file . "../../proj6/src/ROM_RV32.vhdl" "300efb3750352bcc29989f5a276027e6a4c68879" "20231215012219.265":
-  entity rom_rv32 at 2( 33) + 0 on 989;
-  architecture rtl of rom_rv32 at 14( 285) + 0 on 990;
-file . "./PC/PC.vhdl" "b2ef3818dcb2c421fa16c4252792fcaf43c9e4eb" "20231215012219.266":
-  entity pc at 1( 0) + 0 on 991;
-  architecture behaviour of pc at 15( 466) + 0 on 992;
-file . "./Add_4/Add_4.vhdl" "7cbab32a6667d158f02fe40643bf1ae3e87d6352" "20231215012219.268":
-  entity add_4 at 2( 23) + 0 on 993;
-  architecture behaviour of add_4 at 15( 390) + 0 on 994;
-file . "./Adder/Adder.vhdl" "9b5dbca52edc82c899f3fe07e3794e079d6f712c" "20231215012219.269":
-  entity adder at 2( 23) + 0 on 995;
-  architecture behaviour of adder at 17( 451) + 0 on 996;
-file . "./Alu_Control/Alu_Control.vhdl" "4c641b726e7f8589636a1aa146a6a15028302b32" "20231215012219.270":
-  entity alu_control at 1( 0) + 0 on 997;
-  architecture behaviour of alu_control at 15( 495) + 0 on 998;
-file . "./Control/Control.vhdl" "5ef52c78745dc008146d95c573ba5e990c8e6d65" "20231215012219.272":
-  entity control at 1( 0) + 0 on 999;
-  architecture behaviour of control at 21( 754) + 0 on 1000;
-file . "RV32_Processor.vhdl" "181d2d501ba96013604499fad81167e672c558d1" "20231215012219.278":
-  entity rv32_processor at 1( 0) + 0 on 1009;
-  architecture behaviour of rv32_processor at 16( 379) + 0 on 1010;
-file . "Testbench_RV32_Processor.vhdl" "251295374e21c6ad5da934fdc2de326c39438953" "20231215012219.280":
-  entity testbench_rv32_processor at 1( 0) + 0 on 1011;
-  architecture behavior of testbench_rv32_processor at 10( 238) + 0 on 1012;
-file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "a430c5caf077e394cee160c4ff468b0521291525" "20231215012219.276":
-  entity newimmediategenerator at 1( 0) + 0 on 1007;
-  architecture behavior of newimmediategenerator at 12( 297) + 0 on 1008;
+file . "Testbench_RV32_Processor.vhdl" "06efc1932f62fe048b300c85009ed29e45141bc7" "20231216152623.078":
+  entity testbench_rv32_processor at 1( 0) + 0 on 39;
+  architecture behavior of testbench_rv32_processor at 10( 238) + 0 on 40;
+file . "RV32_Processor.vhdl" "1ec695c5b218589e3e246d0e63fc9469c45839df" "20231216152623.077":
+  entity rv32_processor at 1( 0) + 0 on 37;
+  architecture behaviour of rv32_processor at 16( 379) + 0 on 38;
+file . "./NewALU/NewALU.vhdl" "2ce6048735eecab82446379cfa47fc9b05ee7d82" "20231216152623.075":
+  entity newalu at 1( 0) + 0 on 35;
+  architecture bdf_type of newalu at 15( 337) + 0 on 36;
+file . "./NewXREG/NewXREG.vhdl" "f4183396e9c50b30f4da809b9ebd6639fa6e1ed2" "20231216152623.073":
+  entity newxreg at 1( 0) + 0 on 33;
+  architecture behavior of newxreg at 18( 466) + 0 on 34;
+file . "./NewRAM/NewRAM.vhdl" "bf3c42c4aeb2b99a0d41dde7b35b4b7944b63853" "20231216152623.071":
+  entity newram at 1( 0) + 0 on 31;
+  architecture rtl of newram at 19( 463) + 0 on 32;
+file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "a430c5caf077e394cee160c4ff468b0521291525" "20231216152623.069":
+  entity newimmediategenerator at 1( 0) + 0 on 29;
+  architecture behavior of newimmediategenerator at 12( 297) + 0 on 30;
+file . "./Mux_8_1/Mux_8_1.vhdl" "73d9a44da8c7a5f9395796c21f8e1cb4378d1fcf" "20231216152623.067":
+  entity mux_8_1 at 1( 0) + 0 on 27;
+  architecture behaviour of mux_8_1 at 13( 397) + 0 on 28;
+file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "d10f64ddb19ae0097b0c9fe62987fa5d59fd9d16" "20231216152623.066":
+  entity mux_2_5bits at 1( 0) + 0 on 25;
+  architecture behaviour of mux_2_5bits at 14( 394) + 0 on 26;
+file . "./Mux_2_1/Mux_2_1.vhdl" "285a47da5e19968910801f43c47b330051a22a84" "20231216152623.066":
+  entity mux_2_1 at 1( 0) + 0 on 23;
+  architecture behaviour of mux_2_1 at 16( 388) + 0 on 24;
+file . "./Control/Control.vhdl" "5ef52c78745dc008146d95c573ba5e990c8e6d65" "20231216152623.065":
+  entity control at 1( 0) + 0 on 21;
+  architecture behaviour of control at 21( 754) + 0 on 22;
+file . "./Alu_Control/Alu_Control.vhdl" "4c641b726e7f8589636a1aa146a6a15028302b32" "20231216152623.063":
+  entity alu_control at 1( 0) + 0 on 19;
+  architecture behaviour of alu_control at 15( 495) + 0 on 20;
+file . "./Adder/Adder.vhdl" "9b5dbca52edc82c899f3fe07e3794e079d6f712c" "20231216152623.062":
+  entity adder at 2( 23) + 0 on 17;
+  architecture behaviour of adder at 17( 451) + 0 on 18;
+file . "./Add_4/Add_4.vhdl" "7cbab32a6667d158f02fe40643bf1ae3e87d6352" "20231216152623.061":
+  entity add_4 at 2( 23) + 0 on 15;
+  architecture behaviour of add_4 at 15( 390) + 0 on 16;
+file . "./PC/PC.vhdl" "b2ef3818dcb2c421fa16c4252792fcaf43c9e4eb" "20231216152623.059":
+  entity pc at 1( 0) + 0 on 13;
+  architecture behaviour of pc at 15( 466) + 0 on 14;
+file . "../../proj6/src/ROM_RV32.vhdl" "300efb3750352bcc29989f5a276027e6a4c68879" "20231216152623.057":
+  entity rom_rv32 at 2( 33) + 0 on 11;
+  architecture rtl of rom_rv32 at 14( 285) + 0 on 12;
