@@ -26,42 +26,43 @@ BEGIN
         zero <= '0';  -- Default or safe value for zero
     ELSE
         -- Original ALU processing
-        CASE opcode IS
-          WHEN "0000" =>
-            Z <= STD_LOGIC_VECTOR(SIGNED(A) + SIGNED(B));
-            zero <= '0';
+      CASE opcode IS
 
-        WHEN "0001" =>
+        WHEN "0000" => -- ADD
+          Z <= STD_LOGIC_VECTOR(SIGNED(A) + SIGNED(B));
+          zero <= '0';
+
+        WHEN "0001" => -- SUB
           Z <= STD_LOGIC_VECTOR(SIGNED(A) - SIGNED(B));
           zero <= '0';
 
-        WHEN "0010" =>
+        WHEN "0010" => -- AND
           Z <= A AND B;
           zero <= '0';
 
-        WHEN "0011" =>
+        WHEN "0011" => -- OR
           Z <= A OR B;
           zero <= '0';
 
-        WHEN "0100" =>
+        WHEN "0100" => -- XOR
           Z <= A XOR B;
           zero <= '0';
 
-        WHEN "0101" =>  -- Shift Left Logical
+        WHEN "0101" =>  -- SLL
           -- Set to zero if shift amount is too large
           Z <= (others => '0') WHEN TO_INTEGER(SIGNED(B)) >= A'LENGTH ELSE
               STD_LOGIC_VECTOR(SIGNED(A) SLL TO_INTEGER(SIGNED(B)));
           zero <= '0';
         
-        WHEN "0110" =>
+        WHEN "0110" => -- SRL
           Z <= STD_LOGIC_VECTOR(SIGNED(A) SRL TO_INTEGER(SIGNED(B)));
           zero <= '0';
 
-        WHEN "0111" =>
+        WHEN "0111" => -- SRA
           Z <= STD_LOGIC_VECTOR(SHIFT_RIGHT(SIGNED(A), TO_INTEGER(SIGNED(B))));
           zero <= '0';
 
-        WHEN "1000" =>
+        WHEN "1000" => -- SLT
           IF SIGNED(A) < SIGNED(B) THEN
             Z <= x"00000001";
             zero <= '1';
@@ -70,8 +71,8 @@ BEGIN
             zero <= '0';
           END IF;
 
-        WHEN "1001" =>
-          IF SIGNED(A) < SIGNED(B) THEN
+        WHEN "1001" => -- SLTU
+          IF UNSIGNED(A) < UNSIGNED(B) THEN
             Z <= x"00000001";
             zero <= '1';
           ELSE
@@ -79,16 +80,7 @@ BEGIN
             zero <= '0';
           END IF;
 
-        WHEN "1010" =>
-          IF SIGNED(A) < SIGNED(B) THEN
-            Z <= x"00000000";
-            zero <= '0';
-          ELSE
-            Z <= x"00000001";
-            zero <= '1';
-          END IF;
-
-        WHEN "1011" =>
+        WHEN "1010" => -- SGT
           IF SIGNED(A) < SIGNED(B) THEN
             Z <= x"00000000";
             zero <= '0';
@@ -97,7 +89,16 @@ BEGIN
             zero <= '1';
           END IF;
 
-        WHEN "1100" =>
+        WHEN "1011" => -- SGTU
+          IF UNSIGNED(A) < UNSIGNED(B) THEN
+            Z <= x"00000000";
+            zero <= '0';
+          ELSE
+            Z <= x"00000001";
+            zero <= '1';
+          END IF;
+
+        WHEN "1100" => -- SEQ
           IF SIGNED(A) = SIGNED(B) THEN
             Z <= x"00000001";
             zero <= '1';
@@ -106,7 +107,7 @@ BEGIN
             zero <= '0';
           END IF;
 
-        WHEN "1101" =>
+        WHEN "1101" => -- SNE
           IF SIGNED(A) = SIGNED(B) THEN
             Z <= x"00000000";
             zero <= '0';
@@ -115,11 +116,11 @@ BEGIN
             zero <= '1';
           END IF;
 
-        WHEN "1110" =>
+        WHEN "1110" => -- LUI
           Z <= STD_LOGIC_VECTOR(SIGNED(B));
           zero <= '0';
 
-        WHEN "1111" =>
+        WHEN "1111" => -- AUIPC
           Z <= STD_LOGIC_VECTOR(SIGNED(A) + SIGNED(B));
           zero <= '0';
 
