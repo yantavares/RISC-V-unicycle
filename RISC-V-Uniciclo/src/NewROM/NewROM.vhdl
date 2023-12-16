@@ -15,8 +15,7 @@ ARCHITECTURE behavior OF NewROM IS
 
 CONSTANT mem_depth : NATURAL := 4096;
 CONSTANT mem_width : NATURAL := 32;
-TYPE mem_type IS ARRAY (0 TO mem_depth - 1)
-    OF STD_LOGIC_VECTOR(mem_width - 1 DOWNTO 0);
+TYPE mem_type IS ARRAY (0 TO mem_depth - 1) OF STD_LOGIC_VECTOR(mem_width - 1 DOWNTO 0);
 
 SIGNAL address_signal : INTEGER := 0;
 

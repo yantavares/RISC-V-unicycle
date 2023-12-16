@@ -39,15 +39,17 @@ IMPURE FUNCTION init_mem_data RETURN mem_type IS
     RETURN mem_content;
 END FUNCTION;
 
-SIGNAL NewRAMSignal : mem_type := init_mem_data;
+SIGNAL mem : mem_type := init_mem_data;
 
 BEGIN
 
-  address_signal <= (TO_INTEGER(UNSIGNED(address)) / 4);
-
-  dataout <= NewRAMSignal(address_signal) WHEN re = '1' ELSE x"00000000";
-
-  NewRAMSignal(address_signal) <= datain WHEN we = '1';
+    process(we, re, address, datain) -- processo para ler e escrever na memoria
+    begin
+        if we = '1' then mem(to_integer(unsigned(address))) <= datain; -- escreve
+        end if;
+        if re = '1' then dataout <= mem(to_integer(unsigned(address))); -- le
+        end if;
+    end process;
 
 
 END behavior;

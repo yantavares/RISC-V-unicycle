@@ -1,46 +1,46 @@
 v 4
-file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216211205.797":
-  entity pc at 1( 0) + 0 on 1841;
-  architecture bdf_type of pc at 15( 285) + 0 on 1842;
-file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216211205.799":
-  entity add_4 at 1( 0) + 0 on 1843;
-  architecture bdf_type of add_4 at 12( 203) + 0 on 1844;
-file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216211205.801":
-  entity adder at 1( 0) + 0 on 1845;
-  architecture bdf_type of adder at 14( 257) + 0 on 1846;
-file . "./Alu_Control/Alu_Control.vhdl" "196f4c43ccafc658c1833bea19ce748225d90dfe" "20231216211205.802":
-  entity alu_control at 1( 0) + 0 on 1847;
-  architecture behavior of alu_control at 14( 320) + 0 on 1848;
-file . "./Control/Control.vhdl" "d4046abedf7249bf00ecf19fc57651c6965451c1" "20231216211205.804":
-  entity control at 1( 0) + 0 on 1849;
-  architecture behavior of control at 22( 490) + 0 on 1850;
-file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216211205.804":
-  entity mux_2_1 at 1( 0) + 0 on 1851;
-  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 1852;
-file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216211205.805":
-  entity mux_2_5bits at 1( 0) + 0 on 1853;
-  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 1854;
-file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216211205.806":
-  entity mux_8_1 at 1( 0) + 0 on 1855;
-  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 1856;
-file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "1cd02235ec4daac2008366b1ffe421385c499d44" "20231216211205.808":
-  entity newimmediategenerator at 1( 0) + 0 on 1857;
-  architecture behavior of newimmediategenerator at 11( 223) + 0 on 1858;
-file . "./NewRAM/NewRAM.vhdl" "32dcba237ea2aef3ffeb1deefacf46f107be2799" "20231216211205.811":
-  entity newram at 1( 0) + 0 on 1859;
-  architecture behavior of newram at 17( 350) + 0 on 1860;
-file . "./NewROM/NewROM.vhdl" "f466efb9185c19d575afa1cea361aa201089c033" "20231216211205.812":
-  entity newrom at 1( 0) + 0 on 1861;
-  architecture behavior of newrom at 14( 242) + 0 on 1862;
-file . "./NewXREG/NewXREG.vhdl" "d4728781ff59e3e6e97efb4312648e19584ea627" "20231216211205.814":
-  entity newxreg at 1( 0) + 0 on 1863;
-  architecture behavior of newxreg at 18( 415) + 0 on 1864;
-file . "./NewALU/NewALU.vhdl" "6b820fbd38646d1e751b56f56656482fffaf7fcc" "20231216211205.816":
-  entity newalu at 1( 0) + 0 on 1865;
-  architecture bdf_type of newalu at 16( 324) + 0 on 1866;
-file . "RV32_Processor.vhdl" "73734536cf06fc9afc1b41ab297a742bee46cb4a" "20231216211205.818":
-  entity rv32_processor at 1( 0) + 0 on 1867;
-  architecture bdf_type of rv32_processor at 16( 379) + 0 on 1868;
-file . "Testbench_RV32_Processor.vhdl" "61434ab727f0cbc58654c36877098f5c5cd91fba" "20231216211205.819":
-  entity testbench_rv32_processor at 1( 0) + 0 on 1869;
-  architecture behavior of testbench_rv32_processor at 9( 163) + 0 on 1870;
+file . "Testbench_RV32_Processor.vhdl" "61434ab727f0cbc58654c36877098f5c5cd91fba" "20231216211704.457":
+  entity testbench_rv32_processor at 1( 0) + 0 on 1959;
+  architecture behavior of testbench_rv32_processor at 9( 163) + 0 on 1960;
+file . "RV32_Processor.vhdl" "73734536cf06fc9afc1b41ab297a742bee46cb4a" "20231216211704.455":
+  entity rv32_processor at 1( 0) + 0 on 1957;
+  architecture bdf_type of rv32_processor at 16( 379) + 0 on 1958;
+file . "./NewALU/NewALU.vhdl" "6b820fbd38646d1e751b56f56656482fffaf7fcc" "20231216211704.454":
+  entity newalu at 1( 0) + 0 on 1955;
+  architecture bdf_type of newalu at 16( 324) + 0 on 1956;
+file . "./NewXREG/NewXREG.vhdl" "d4728781ff59e3e6e97efb4312648e19584ea627" "20231216211704.451":
+  entity newxreg at 1( 0) + 0 on 1953;
+  architecture behavior of newxreg at 18( 415) + 0 on 1954;
+file . "./NewROM/NewROM.vhdl" "6fdf35ac4e3c3844ed237af983b84fc650071052" "20231216211704.450":
+  entity newrom at 1( 0) + 0 on 1951;
+  architecture behavior of newrom at 14( 242) + 0 on 1952;
+file . "./NewRAM/NewRAM.vhdl" "3d63abe4eeea42926df7b4d99b582a99cc698f80" "20231216211704.448":
+  entity newram at 1( 0) + 0 on 1949;
+  architecture behavior of newram at 17( 350) + 0 on 1950;
+file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "1cd02235ec4daac2008366b1ffe421385c499d44" "20231216211704.446":
+  entity newimmediategenerator at 1( 0) + 0 on 1947;
+  architecture behavior of newimmediategenerator at 11( 223) + 0 on 1948;
+file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216211704.444":
+  entity mux_8_1 at 1( 0) + 0 on 1945;
+  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 1946;
+file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216211704.443":
+  entity mux_2_5bits at 1( 0) + 0 on 1943;
+  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 1944;
+file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216211704.442":
+  entity mux_2_1 at 1( 0) + 0 on 1941;
+  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 1942;
+file . "./Control/Control.vhdl" "d4046abedf7249bf00ecf19fc57651c6965451c1" "20231216211704.441":
+  entity control at 1( 0) + 0 on 1939;
+  architecture behavior of control at 22( 490) + 0 on 1940;
+file . "./Alu_Control/Alu_Control.vhdl" "196f4c43ccafc658c1833bea19ce748225d90dfe" "20231216211704.439":
+  entity alu_control at 1( 0) + 0 on 1937;
+  architecture behavior of alu_control at 14( 320) + 0 on 1938;
+file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216211704.438":
+  entity adder at 1( 0) + 0 on 1935;
+  architecture bdf_type of adder at 14( 257) + 0 on 1936;
+file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216211704.437":
+  entity add_4 at 1( 0) + 0 on 1933;
+  architecture bdf_type of add_4 at 12( 203) + 0 on 1934;
+file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216211704.435":
+  entity pc at 1( 0) + 0 on 1931;
+  architecture bdf_type of pc at 15( 285) + 0 on 1932;
