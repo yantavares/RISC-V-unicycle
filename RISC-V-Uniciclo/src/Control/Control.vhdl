@@ -47,128 +47,142 @@ BEGIN
 PROCESS (op_signal)
   BEGIN
 
-    CASE op_signal IS
+    IF (op_signal = "UUUUUUU") THEN
+      branch_signal <= '0';
+      memRead_signal <= '0';
+      memToReg_signal <= '0';
+      memWrite_signal <= '0';
+      auipc_signal <= '0';
+      jal_signal <= '0';
+      regWrite_signal <= '0';
+      aluSrc_signal <= '0';
+      aluOp_signal <= "00";
+    
+    ELSE
 
-      -- tipo R
-      WHEN "0110011" =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '0';
-        aluOp_signal <= "00";
+      CASE op_signal IS
 
-      -- tipo I
-      WHEN "0010011" =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "01";
+        -- tipo R
+        WHEN "0110011" =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '0';
+          aluOp_signal <= "00";
 
-      -- Branches
-      WHEN "1100011" =>
-        branch_signal <= '1';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '0';
-        aluSrc_signal <= '0';
-        aluOp_signal <= "10";
+        -- tipo I
+        WHEN "0010011" =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "01";
 
-      -- LW
-      WHEN "0000011" =>
-        branch_signal <= '0';
-        memRead_signal <= '1';
-        memToReg_signal <= '1';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- Branches
+        WHEN "1100011" =>
+          branch_signal <= '1';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '0';
+          aluSrc_signal <= '0';
+          aluOp_signal <= "10";
 
-      -- SW
-      WHEN "0100011" =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '1';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '0';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- LW
+        WHEN "0000011" =>
+          branch_signal <= '0';
+          memRead_signal <= '1';
+          memToReg_signal <= '1';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-      -- LUi
-      WHEN "0110111" =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '0';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- SW
+        WHEN "0100011" =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '1';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '0';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-      -- AUiPC
-      WHEN "0010111" =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '1';
-        jal_signal <= '0';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- LUi
+        WHEN "0110111" =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '0';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-      -- JAL
-      WHEN "1101111" =>
-        branch_signal <= '1';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '1';
-        regWrite_signal <= '1';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- AUiPC
+        WHEN "0010111" =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '1';
+          jal_signal <= '0';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-      -- JALR
-      WHEN "1100111" =>
-        branch_signal <= '1';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        jal_signal <= '1';
-        regWrite_signal <= '0';
-        aluSrc_signal <= '1';
-        aluOp_signal <= "11";
+        -- JAL
+        WHEN "1101111" =>
+          branch_signal <= '1';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '1';
+          regWrite_signal <= '1';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-      WHEN OTHERS =>
-        branch_signal <= '0';
-        memRead_signal <= '0';
-        memToReg_signal <= '0';
-        jal_signal <= '0';
-        aluOp_signal <= "00";
-        memWrite_signal <= '0';
-        auipc_signal <= '0';
-        aluSrc_signal <= '0';
-        regWrite_signal <= '0';
+        -- JALR
+        WHEN "1100111" =>
+          branch_signal <= '1';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          jal_signal <= '1';
+          regWrite_signal <= '0';
+          aluSrc_signal <= '1';
+          aluOp_signal <= "11";
 
-    END CASE;
+        WHEN OTHERS =>
+          branch_signal <= '0';
+          memRead_signal <= '0';
+          memToReg_signal <= '0';
+          jal_signal <= '0';
+          aluOp_signal <= "00";
+          memWrite_signal <= '0';
+          auipc_signal <= '0';
+          aluSrc_signal <= '0';
+          regWrite_signal <= '0';
+
+      END CASE;
+    END IF; 
   END PROCESS;
 
 END bdf_type;
