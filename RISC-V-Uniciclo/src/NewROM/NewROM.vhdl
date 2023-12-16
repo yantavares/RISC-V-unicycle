@@ -11,7 +11,7 @@ ENTITY NewROM IS
     dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END NewROM;
 
-ARCHITECTURE bdf_type OF NewROM IS
+ARCHITECTURE behavior OF NewROM IS
 
 CONSTANT mem_depth : NATURAL := 4096;
 CONSTANT mem_width : NATURAL := 32;
@@ -24,7 +24,7 @@ IMPURE FUNCTION init_mem_instr RETURN mem_type IS
   FILE text_file : TEXT OPEN READ_MODE IS "code.txt";
   VARIABLE text_line : LINE;
   VARIABLE mem_content : mem_type;
-  VARIABLE mem_content_bit_vector : BIT_VECTOR(31 DOWNTO 0) := "00000000000000000000000000000000";
+  VARIABLE mem_content_bit_vector : BIT_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
   BEGIN
     FOR i IN 0 TO mem_depth - 1 LOOP
       IF (NOT ENDFILE(text_file)) THEN
@@ -43,4 +43,4 @@ BEGIN
   address_signal <= TO_INTEGER(UNSIGNED(address)) / 4;
   dataout <= NewRomSignal(address_signal);
 
-END bdf_type;
+END behavior;
