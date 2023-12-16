@@ -39,13 +39,8 @@ This project involves the implementation of a RISC-V Unicycle processor in VHDL.
    - If you prefer to manually compile and run the files, follow these steps:
      - Compile each VHDL file:
        ```bash
-       ghdl -a pc.vhdl
-       ghdl -a RAM_RV32.vhdl
-       ghdl -a ROM_RV32.vhdl
-       ghdl -a XREG.vhdl
-       ghdl -a AluRV32.vhdl
-       ghdl -a ImmediateGenerator.vhdl
-       ghdl -a RV32_Processor.vhdl
+       ghdl -a ./PC/PC.vhdl
+          ...
        ```
      - Compile the testbench file:
        ```bash
@@ -66,9 +61,3 @@ This project involves the implementation of a RISC-V Unicycle processor in VHDL.
        gtkwave processor_waveform.vcd
        gtkwave testbench_waveform.vcd
        ```
-
-## Best Practices for Using this Project
-
-- Begin with running the testbench to ensure basic functionality.
-- Modify and extend the testbench to cover more complex scenarios and edge cases.
-- Regularly update the documentation to reflect changes in the project.
