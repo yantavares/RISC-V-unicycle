@@ -118,6 +118,7 @@ BEGIN
         zero <= '0';
 
       WHEN OTHERS =>
+        report "Invalid opcode" & to_string(opcode) severity error;
         Z <= "00000000000000000000000000000000";
         zero <= '0';
 

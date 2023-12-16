@@ -1,46 +1,46 @@
 v 4
-file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216191419.017":
-  entity pc at 1( 0) + 0 on 761;
-  architecture bdf_type of pc at 15( 285) + 0 on 762;
-file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216191419.019":
-  entity add_4 at 1( 0) + 0 on 763;
-  architecture bdf_type of add_4 at 12( 203) + 0 on 764;
-file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216191419.021":
-  entity adder at 1( 0) + 0 on 765;
-  architecture bdf_type of adder at 14( 257) + 0 on 766;
-file . "./Alu_Control/Alu_Control.vhdl" "f03057afb99d1ae00d5b97ca552800e131e6a29b" "20231216191419.022":
-  entity alu_control at 1( 0) + 0 on 767;
-  architecture bdf_type of alu_control at 16( 348) + 0 on 768;
-file . "./Control/Control.vhdl" "e38685ec270787e16bcedfa04966f04586f2283f" "20231216191419.024":
-  entity control at 1( 0) + 0 on 769;
-  architecture bdf_type of control at 21( 750) + 0 on 770;
-file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216191419.025":
-  entity mux_2_1 at 1( 0) + 0 on 771;
-  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 772;
-file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216191419.026":
-  entity mux_2_5bits at 1( 0) + 0 on 773;
-  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 774;
-file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216191419.027":
-  entity mux_8_1 at 1( 0) + 0 on 775;
-  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 776;
-file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "ba9956cc556db5389085d3a5b48dc1b0b749d41c" "20231216191419.029":
-  entity newimmediategenerator at 1( 0) + 0 on 777;
-  architecture bdf_type of newimmediategenerator at 11( 223) + 0 on 778;
-file . "./NewRAM/NewRAM.vhdl" "6ccf63713df488c3a5cd64044ab8c3010d6cfceb" "20231216191419.031":
-  entity newram at 1( 0) + 0 on 779;
-  architecture bdf_type of newram at 18( 376) + 0 on 780;
-file . "./NewROM/NewROM.vhdl" "eb83aecede23132f60b2ec0b9f1f4d39cd401b20" "20231216191419.033":
-  entity newrom at 1( 0) + 0 on 781;
-  architecture bdf_type of newrom at 14( 242) + 0 on 782;
-file . "./NewXREG/NewXREG.vhdl" "fcf0bbcd3d5663ee3be993ea81515f3f80d89c56" "20231216191419.034":
-  entity newxreg at 1( 0) + 0 on 783;
-  architecture bdf_type of newxreg at 19( 439) + 0 on 784;
-file . "./NewALU/NewALU.vhdl" "3d24cdd58f7ba813227edacaf102ba574d0848f9" "20231216191419.036":
-  entity newalu at 1( 0) + 0 on 785;
-  architecture bdf_type of newalu at 16( 324) + 0 on 786;
-file . "RV32_Processor.vhdl" "4b474f474f7a8afc6fbba53a7a564c41f33540fa" "20231216191419.038":
-  entity rv32_processor at 1( 0) + 0 on 787;
-  architecture bdf_type of rv32_processor at 16( 379) + 0 on 788;
-file . "Testbench_RV32_Processor.vhdl" "61434ab727f0cbc58654c36877098f5c5cd91fba" "20231216191419.040":
-  entity testbench_rv32_processor at 1( 0) + 0 on 789;
-  architecture behavior of testbench_rv32_processor at 9( 163) + 0 on 790;
+file . "./PC/PC.vhdl" "45549fd3c67329cc172da5ae8004168c44894020" "20231216192642.682":
+  entity pc at 1( 0) + 0 on 1001;
+  architecture bdf_type of pc at 15( 285) + 0 on 1002;
+file . "./Add_4/Add_4.vhdl" "e1e2fb63a8f6ffe8a15b5dde060816ec28f36ab3" "20231216192642.684":
+  entity add_4 at 1( 0) + 0 on 1003;
+  architecture bdf_type of add_4 at 12( 203) + 0 on 1004;
+file . "./Adder/Adder.vhdl" "ea55a00921063ab779f6d3c6f8d002ade12e5887" "20231216192642.685":
+  entity adder at 1( 0) + 0 on 1005;
+  architecture bdf_type of adder at 14( 257) + 0 on 1006;
+file . "./Alu_Control/Alu_Control.vhdl" "f03057afb99d1ae00d5b97ca552800e131e6a29b" "20231216192642.686":
+  entity alu_control at 1( 0) + 0 on 1007;
+  architecture bdf_type of alu_control at 16( 348) + 0 on 1008;
+file . "./Control/Control.vhdl" "e38685ec270787e16bcedfa04966f04586f2283f" "20231216192642.689":
+  entity control at 1( 0) + 0 on 1009;
+  architecture bdf_type of control at 21( 750) + 0 on 1010;
+file . "./Mux_2_1/Mux_2_1.vhdl" "415bd4d87a0c80d21273a0dfe540c58e06c97836" "20231216192642.689":
+  entity mux_2_1 at 1( 0) + 0 on 1011;
+  architecture bdf_type of mux_2_1 at 14( 257) + 0 on 1012;
+file . "./Mux_2_5bits/Mux_2_5bits.vhdl" "665177a4b00b5d7b163506e81d56d56355eaea87" "20231216192642.690":
+  entity mux_2_5bits at 1( 0) + 0 on 1013;
+  architecture bdf_type of mux_2_5bits at 14( 262) + 0 on 1014;
+file . "./Mux_8_1/Mux_8_1.vhdl" "91ef4d12cee6970bccd7a7fa830050d8a2a53600" "20231216192642.691":
+  entity mux_8_1 at 1( 0) + 0 on 1015;
+  architecture bdf_type of mux_8_1 at 20( 528) + 0 on 1016;
+file . "./NewImmediateGenerator/NewImmediateGenerator.vhdl" "64cd7557ec8d0716a676711442c895bf23cf7ace" "20231216192642.693":
+  entity newimmediategenerator at 1( 0) + 0 on 1017;
+  architecture bdf_type of newimmediategenerator at 11( 223) + 0 on 1018;
+file . "./NewRAM/NewRAM.vhdl" "6ccf63713df488c3a5cd64044ab8c3010d6cfceb" "20231216192642.696":
+  entity newram at 1( 0) + 0 on 1019;
+  architecture bdf_type of newram at 18( 376) + 0 on 1020;
+file . "./NewROM/NewROM.vhdl" "eb83aecede23132f60b2ec0b9f1f4d39cd401b20" "20231216192642.697":
+  entity newrom at 1( 0) + 0 on 1021;
+  architecture bdf_type of newrom at 14( 242) + 0 on 1022;
+file . "./NewXREG/NewXREG.vhdl" "fcf0bbcd3d5663ee3be993ea81515f3f80d89c56" "20231216192642.699":
+  entity newxreg at 1( 0) + 0 on 1023;
+  architecture bdf_type of newxreg at 19( 439) + 0 on 1024;
+file . "./NewALU/NewALU.vhdl" "1fc234689f96234aaf54ce0a4e18a2402fba4d4f" "20231216192642.701":
+  entity newalu at 1( 0) + 0 on 1025;
+  architecture bdf_type of newalu at 16( 324) + 0 on 1026;
+file . "RV32_Processor.vhdl" "46c068213e79ac64691108570db754c64425e55b" "20231216192642.703":
+  entity rv32_processor at 1( 0) + 0 on 1027;
+  architecture bdf_type of rv32_processor at 16( 379) + 0 on 1028;
+file . "Testbench_RV32_Processor.vhdl" "92769506db1bbad42aa381935995f2cc3f8e539c" "20231216192642.704":
+  entity testbench_rv32_processor at 1( 0) + 0 on 1029;
+  architecture behavior of testbench_rv32_processor at 9( 163) + 0 on 1030;
