@@ -41,16 +41,18 @@ BEGIN
         Z <= A XOR B;
         zero <= '0';
 
-      WHEN "0101" =>
-        Z <= STD_LOGIC_VECTOR(UNSIGNED(A) SLL TO_INTEGER(UNSIGNED(B)));
+      WHEN "0101" =>  -- Shift Left Logical
+        -- Set to zero if shift amount is too large
+        Z <= (others => '0') WHEN TO_INTEGER(SIGNED(B)) >= A'LENGTH ELSE
+             STD_LOGIC_VECTOR(SIGNED(A) SLL TO_INTEGER(SIGNED(B)));
         zero <= '0';
-
+      
       WHEN "0110" =>
-        Z <= STD_LOGIC_VECTOR(UNSIGNED(A) SRL TO_INTEGER(UNSIGNED(B)));
+        Z <= STD_LOGIC_VECTOR(SIGNED(A) SRL TO_INTEGER(SIGNED(B)));
         zero <= '0';
 
       WHEN "0111" =>
-        Z <= STD_LOGIC_VECTOR(SHIFT_RIGHT(SIGNED(A), TO_INTEGER(UNSIGNED(B))));
+        Z <= STD_LOGIC_VECTOR(SHIFT_RIGHT(SIGNED(A), TO_INTEGER(SIGNED(B))));
         zero <= '0';
 
       WHEN "1000" =>
@@ -63,7 +65,7 @@ BEGIN
         END IF;
 
       WHEN "1001" =>
-        IF UNSIGNED(A) < UNSIGNED(B) THEN
+        IF SIGNED(A) < SIGNED(B) THEN
           Z <= x"00000001";
           zero <= '1';
         ELSE
@@ -81,7 +83,7 @@ BEGIN
         END IF;
 
       WHEN "1011" =>
-        IF UNSIGNED(A) < UNSIGNED(B) THEN
+        IF SIGNED(A) < SIGNED(B) THEN
           Z <= x"00000000";
           zero <= '0';
         ELSE
@@ -90,7 +92,7 @@ BEGIN
         END IF;
 
       WHEN "1100" =>
-        IF UNSIGNED(A) = UNSIGNED(B) THEN
+        IF SIGNED(A) = SIGNED(B) THEN
           Z <= x"00000001";
           zero <= '1';
         ELSE
@@ -99,7 +101,7 @@ BEGIN
         END IF;
 
       WHEN "1101" =>
-        IF UNSIGNED(A) = UNSIGNED(B) THEN
+        IF SIGNED(A) = SIGNED(B) THEN
           Z <= x"00000000";
           zero <= '0';
         ELSE
@@ -108,7 +110,7 @@ BEGIN
         END IF;
 
       WHEN "1110" =>
-        Z <= STD_LOGIC_VECTOR(UNSIGNED(B));
+        Z <= STD_LOGIC_VECTOR(SIGNED(B));
         zero <= '0';
 
       WHEN "1111" =>
