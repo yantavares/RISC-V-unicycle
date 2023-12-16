@@ -7,12 +7,11 @@ LIBRARY work;
 
 ENTITY NewRAM IS
   PORT (
-    clock : IN STD_LOGIC;
     we : IN STD_LOGIC;
     re : IN STD_LOGIC;
     address : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     datain : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+    dataout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := x"00000000");
 END NewRAM;
 
 ARCHITECTURE behavior OF NewRAM IS
@@ -48,13 +47,7 @@ BEGIN
 
   dataout <= NewRAMSignal(address_signal) WHEN re = '1' ELSE x"00000000";
 
-  PROCESS (clock)
-  BEGIN
-    IF RISING_EDGE(clock) THEN
-      IF we = '1' THEN
-        NewRAMSignal(address_signal) <= datain;
-      END IF;
-    END IF;
-  END PROCESS;
+  NewRAMSignal(address_signal) <= datain WHEN we = '1';
+
 
 END behavior;

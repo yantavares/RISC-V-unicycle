@@ -57,11 +57,6 @@ SIGNAL adder_in1_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL write_or_jal_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 
-
-
-
-
-
 COMPONENT NewImmediateGenerator
   PORT (
     instruction : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -151,7 +146,6 @@ END COMPONENT;
 
 COMPONENT NewRAM
   PORT (
-    clock : IN STD_LOGIC;
     we : IN STD_LOGIC;
     re : IN STD_LOGIC;
     address : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
@@ -282,7 +276,6 @@ BEGIN
 
   mem_data_inst17 : NewRAM
   PORT MAP (
-    clock => clock,
     we => memWrite_signal,
     re => memRead_signal,
     address => Zout_signal(11 DOWNTO 0),
