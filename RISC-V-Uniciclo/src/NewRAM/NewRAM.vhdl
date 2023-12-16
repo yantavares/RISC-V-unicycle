@@ -43,11 +43,11 @@ SIGNAL mem : mem_type := init_mem_data;
 
 BEGIN
 
-    process(we, re, address, datain) -- processo para ler e escrever na memoria
+    process(we, re, address, datain) -- process to write and read
     begin
-        if we = '1' then mem(to_integer(unsigned(address))) <= datain; -- escreve
+        if we = '1' then mem(to_integer(unsigned(address))) <= datain; -- writes
         end if;
-        if re = '1' then dataout <= mem(to_integer(unsigned(address))); -- le
+        if re = '1' then dataout <= mem(to_integer(unsigned(address))); -- reads
         end if;
     end process;
 
