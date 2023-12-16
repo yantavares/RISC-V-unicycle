@@ -8,7 +8,7 @@ ENTITY NewImmediateGenerator IS
   );
 END NewImmediateGenerator;
 
-ARCHITECTURE bdf_type OF NewImmediateGenerator IS
+ARCHITECTURE behavior OF NewImmediateGenerator IS
   SIGNAL I_type, S_type, SB_type, UJ_type, U_type : STD_LOGIC_VECTOR(31 DOWNTO 0);
   SIGNAL selector : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
@@ -65,4 +65,4 @@ BEGIN
     Sel => selector,
     Result => immediate
   );
-END bdf_type;
+END behavior;
