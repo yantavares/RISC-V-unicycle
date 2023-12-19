@@ -119,8 +119,6 @@ ARCHITECTURE behavior OF RV32_Processor IS
 
 BEGIN
 
-  wait for 10 ns;
-
   -- Control Unit
   control_inst01 : Control
     PORT MAP (
