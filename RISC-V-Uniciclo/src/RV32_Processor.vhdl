@@ -11,7 +11,7 @@ ENTITY RV32_Processor IS
     immediate : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
 END RV32_Processor;
 
-ARCHITECTURE bdf_type OF RV32_Processor IS
+ARCHITECTURE behavior OF RV32_Processor IS
 
   -- Signal Declarations
   SIGNAL instruction_signal, immOut_signal, Ain_signal, Bin_signal, Zout_signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -118,6 +118,8 @@ ARCHITECTURE bdf_type OF RV32_Processor IS
   END COMPONENT;
 
 BEGIN
+
+  wait for 10 ns;
 
   -- Control Unit
   control_inst01 : Control
@@ -269,4 +271,4 @@ BEGIN
   rd <= write_data_signal;
   immediate <= immOut_signal;
 
-END bdf_type;
+END behavior;

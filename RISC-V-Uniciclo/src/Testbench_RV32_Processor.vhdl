@@ -67,7 +67,7 @@ BEGIN
         -- wait for some time or clock cycles
         -- For now, let's just run it for some cycles and then stop
 
-        wait for 100 * clock_period;  -- Wait for 100 clock cycles
+        wait for 2 * clock_period;  -- Wait for 100 clock cycles
 
         test_finished <= true;
 
