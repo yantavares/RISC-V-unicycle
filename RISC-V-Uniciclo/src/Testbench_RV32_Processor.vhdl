@@ -57,8 +57,11 @@ BEGIN
             clock <= '1';
             wait for clock_period/2;
         end loop;
+        clock <= '0';
+        wait for clock_period/2;
         wait;
     end process;
+
     
     -- Test stimulus process
     stimulus: process
@@ -66,9 +69,9 @@ BEGIN
 
         wait for 2 * clock_period;  -- Wait for X clock cycles
 
-        test_finished <= true;
-
         -- End of simulation
+        test_finished <= true;
+        
         wait;  -- will wait forever
     end process;
 

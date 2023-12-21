@@ -1,0 +1,304 @@
+$date
+  Thu Dec 21 19:32:43 2023
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module textio $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module rv32_processor $end
+$var reg 1 ! clock $end
+$var reg 32 " instruction[31:0] $end
+$var reg 32 # rs1[31:0] $end
+$var reg 32 $ rs2[31:0] $end
+$var reg 32 % rd[31:0] $end
+$var reg 32 & immediate[31:0] $end
+$var reg 32 ' instruction_signal[31:0] $end
+$var reg 32 ( immout_signal[31:0] $end
+$var reg 32 ) ain_signal[31:0] $end
+$var reg 32 * bin_signal[31:0] $end
+$var reg 32 + zout_signal[31:0] $end
+$var reg 1 , zeroout_signal $end
+$var reg 1 - branch_signal $end
+$var reg 1 . memtoreg_signal $end
+$var reg 1 / memread_signal $end
+$var reg 1 0 memwrite_signal $end
+$var reg 1 1 auipc_signal $end
+$var reg 1 2 alusrc_signal $end
+$var reg 1 3 jal_signal $end
+$var reg 1 4 regwrite_signal $end
+$var reg 32 5 addr_in_signal[31:0] $end
+$var reg 32 6 addr_out_signal[31:0] $end
+$var reg 32 7 adderout_signal[31:0] $end
+$var reg 32 8 adder4out_signal[31:0] $end
+$var reg 32 9 write_data_signal[31:0] $end
+$var reg 32 : rs1_signal[31:0] $end
+$var reg 32 ; rs2_signal[31:0] $end
+$var reg 32 < data_out_signal[31:0] $end
+$var reg 32 = adder_in1_signal[31:0] $end
+$var reg 32 > write_or_jal_signal[31:0] $end
+$var reg 2 ? aluop_signal[1:0] $end
+$var reg 4 @ aluopout_signal[3:0] $end
+$var reg 1 A rst_signal $end
+$scope module control_inst01 $end
+$var reg 7 B op[6:0] $end
+$var reg 1 C branch $end
+$var reg 1 D memread $end
+$var reg 1 E memtoreg $end
+$var reg 1 F auipc $end
+$var reg 1 G jal $end
+$var reg 2 H aluop[1:0] $end
+$var reg 1 I memwrite $end
+$var reg 1 J alusrc $end
+$var reg 1 K regwrite $end
+$upscope $end
+$scope module genimm_inst02 $end
+$var reg 32 L instruction[31:0] $end
+$var reg 32 M immediate[31:0] $end
+$var reg 32 N i_type[31:0] $end
+$var reg 32 O s_type[31:0] $end
+$var reg 32 P sb_type[31:0] $end
+$var reg 32 Q uj_type[31:0] $end
+$var reg 32 R u_type[31:0] $end
+$var reg 3 S selector[2:0] $end
+$scope module mux_inst $end
+$var reg 32 T a[31:0] $end
+$var reg 32 U b[31:0] $end
+$var reg 32 V c[31:0] $end
+$var reg 32 W d[31:0] $end
+$var reg 32 X e[31:0] $end
+$var reg 32 Y f[31:0] $end
+$var reg 32 Z g[31:0] $end
+$var reg 32 [ h[31:0] $end
+$var reg 3 \ sel[2:0] $end
+$var reg 32 ] result[31:0] $end
+$upscope $end
+$upscope $end
+$scope module alu_inst03 $end
+$var reg 4 ^ opcode[3:0] $end
+$var reg 32 _ a[31:0] $end
+$var reg 32 ` b[31:0] $end
+$var reg 32 a z[31:0] $end
+$var reg 1 b zero $end
+$upscope $end
+$scope module control_alu_inst04 $end
+$var reg 2 c ulaop[1:0] $end
+$var reg 1 d funct7 $end
+$var reg 1 e auipcin $end
+$var reg 3 f funct3[2:0] $end
+$var reg 4 g opout[3:0] $end
+$upscope $end
+$scope module pc_inst05 $end
+$var reg 32 h addr_in[31:0] $end
+$var reg 1 i rst $end
+$var reg 1 j clk $end
+$var reg 32 k addr_out[31:0] $end
+$upscope $end
+$scope module adder_inst06 $end
+$var reg 32 l a[31:0] $end
+$var reg 32 m b[31:0] $end
+$var reg 32 n z[31:0] $end
+$upscope $end
+$scope module adder4_inst07 $end
+$var reg 32 o a[31:0] $end
+$var reg 32 p z[31:0] $end
+$upscope $end
+$scope module muxa_inst08 $end
+$var reg 1 q sel $end
+$var reg 32 r a[31:0] $end
+$var reg 32 s b[31:0] $end
+$var reg 32 t result[31:0] $end
+$upscope $end
+$scope module muxb_inst09 $end
+$var reg 1 u sel $end
+$var reg 32 v a[31:0] $end
+$var reg 32 w b[31:0] $end
+$var reg 32 x result[31:0] $end
+$upscope $end
+$scope module muxc_inst10 $end
+$var reg 1 y sel $end
+$var reg 32 z a[31:0] $end
+$var reg 32 { b[31:0] $end
+$var reg 32 | result[31:0] $end
+$upscope $end
+$scope module muxd_inst11 $end
+$var reg 1 } sel $end
+$var reg 32 !" a[31:0] $end
+$var reg 32 "" b[31:0] $end
+$var reg 32 #" result[31:0] $end
+$upscope $end
+$scope module muxg_inst14 $end
+$var reg 1 $" sel $end
+$var reg 32 %" a[31:0] $end
+$var reg 32 &" b[31:0] $end
+$var reg 32 '" result[31:0] $end
+$upscope $end
+$scope module muxh_inst15 $end
+$var reg 1 (" sel $end
+$var reg 32 )" a[31:0] $end
+$var reg 32 *" b[31:0] $end
+$var reg 32 +" result[31:0] $end
+$upscope $end
+$scope module mem_reg_inst16 $end
+$var reg 1 ," wren $end
+$var reg 5 -" rs1[4:0] $end
+$var reg 5 ." rs2[4:0] $end
+$var reg 5 /" rd[4:0] $end
+$var reg 32 0" data[31:0] $end
+$var reg 32 1" ro1[31:0] $end
+$var reg 32 2" ro2[31:0] $end
+$var integer 32 3" address1_signal $end
+$var integer 32 4" address2_signal $end
+$var integer 32 5" write_address_signal $end
+$comment breg is not handled $end
+$upscope $end
+$scope module mem_data_inst17 $end
+$var reg 1 6" we $end
+$var reg 1 7" re $end
+$var reg 12 8" address[11:0] $end
+$var reg 32 9" datain[31:0] $end
+$var reg 32 :" dataout[31:0] $end
+$var integer 32 ;" address_signal $end
+$comment mem is not handled $end
+$upscope $end
+$scope module mem_instr_inst18 $end
+$var reg 12 <" address[11:0] $end
+$var reg 32 =" dataout[31:0] $end
+$var integer 32 >" address_signal $end
+$comment newromsignal is not handled $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+U!
+b00000000000100000000010100010011 "
+b00000000000000000000000000000000 #
+b00000000000000000000000000000000 $
+b00000000000000000000000000000001 %
+b00000000000000000000000000000001 &
+b00000000000100000000010100010011 '
+b00000000000000000000000000000001 (
+b00000000000000000000000000000000 )
+b00000000000000000000000000000001 *
+b00000000000000000000000000000001 +
+0,
+0-
+0.
+0/
+00
+01
+12
+03
+14
+b00000000000000000000000000000100 5
+b00000000000000000000000000000000 6
+b00000000000000000000000000000001 7
+b00000000000000000000000000000100 8
+b00000000000000000000000000000001 9
+b00000000000000000000000000000000 :
+b00000000000000000000000000000000 ;
+b00000000000000000000000000000000 <
+b00000000000000000000000000000000 =
+b00000000000000000000000000000001 >
+b01 ?
+b0000 @
+0A
+b0010011 B
+0C
+0D
+0E
+0F
+0G
+b01 H
+0I
+1J
+1K
+b00000000000100000000010100010011 L
+b00000000000000000000000000000001 M
+b00000000000000000000000000000001 N
+b00000000000000000000000000001010 O
+b00000000000000000000000000001010 P
+b00000000000000000000100000000000 Q
+b00000000000100000000000000000000 R
+b000 S
+b00000000000000000000000000000001 T
+b00000000000000000000000000001010 U
+b00000000000000000000000000001010 V
+b00000000000100000000000000000000 W
+b00000000000000000000100000000000 X
+b00000000000000000000000000000000 Y
+b00000000000000000000000000000000 Z
+b00000000000000000000000000000000 [
+b000 \
+b00000000000000000000000000000001 ]
+b0000 ^
+b00000000000000000000000000000000 _
+b00000000000000000000000000000001 `
+b00000000000000000000000000000001 a
+0b
+b01 c
+0d
+0e
+b000 f
+b0000 g
+b00000000000000000000000000000100 h
+0i
+Uj
+b00000000000000000000000000000000 k
+b00000000000000000000000000000000 l
+b00000000000000000000000000000001 m
+b00000000000000000000000000000001 n
+b00000000000000000000000000000000 o
+b00000000000000000000000000000100 p
+0q
+b00000000000000000000000000000100 r
+b00000000000000000000000000000001 s
+b00000000000000000000000000000100 t
+1u
+b00000000000000000000000000000000 v
+b00000000000000000000000000000001 w
+b00000000000000000000000000000001 x
+0y
+b00000000000000000000000000000001 z
+b00000000000000000000000000000000 {
+b00000000000000000000000000000001 |
+0}
+b00000000000000000000000000000000 !"
+b00000000000000000000000000000000 ""
+b00000000000000000000000000000000 #"
+0$"
+b00000000000000000000000000000000 %"
+b00000000000000000000000000000000 &"
+b00000000000000000000000000000000 '"
+0("
+b00000000000000000000000000000001 )"
+b00000000000000000000000000000100 *"
+b00000000000000000000000000000001 +"
+1,"
+b00000 -"
+b00001 ."
+b01010 /"
+b00000000000000000000000000000001 0"
+b00000000000000000000000000000000 1"
+b00000000000000000000000000000000 2"
+b0 3"
+b1 4"
+b1010 5"
+06"
+07"
+b000000000001 8"
+b00000000000000000000000000000000 9"
+b00000000000000000000000000000000 :"
+b0 ;"
+b000000000000 <"
+b00000000000100000000010100010011 ="
+b0 >"
