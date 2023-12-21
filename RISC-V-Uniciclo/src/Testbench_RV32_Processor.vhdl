@@ -24,7 +24,7 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
     signal test_finished : boolean := false;
     
     --Inputs
-    signal clock : std_logic := '0';
+    signal clock : std_logic := '1';
 
     --Outputs
     signal instruction : std_logic_vector(31 downto 0);
@@ -50,6 +50,7 @@ BEGIN
     -- Clock process
     clock_process: process
     begin
+        wait for clock_period/2;
         while not test_finished loop
             clock <= '0';
             wait for clock_period/2;
