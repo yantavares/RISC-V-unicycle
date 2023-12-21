@@ -63,12 +63,8 @@ BEGIN
     -- Test stimulus process
     stimulus: process
     begin
-        -- Add your test stimulus here
-        -- For example, force some inputs and monitor the outputs
-        -- wait for some time or clock cycles
-        -- For now, let's just run it for some cycles and then stop
 
-        wait for 2 * clock_period;  -- Wait for 100 clock cycles
+        wait for 2 * clock_period;  -- Wait for X clock cycles
 
         test_finished <= true;
 
