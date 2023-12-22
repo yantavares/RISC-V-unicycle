@@ -67,7 +67,7 @@ BEGIN
     stimulus: process
     begin
 
-        wait for 2 * clock_period;  -- Wait for X clock cycles
+        wait for 100 * clock_period;  -- Wait for X clock cycles
 
         -- End of simulation
         test_finished <= true;

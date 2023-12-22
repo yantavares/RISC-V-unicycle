@@ -20,7 +20,7 @@ TYPE mem_type IS ARRAY (0 TO mem_depth - 1) OF STD_LOGIC_VECTOR(mem_width - 1 DO
 SIGNAL address_signal : INTEGER := 0;
 
 IMPURE FUNCTION init_mem_instr RETURN mem_type IS
-  FILE text_file : TEXT OPEN READ_MODE IS "code2.txt";
+  FILE text_file : TEXT OPEN READ_MODE IS "code.txt";
   VARIABLE text_line : LINE;
   VARIABLE mem_content : mem_type;
   VARIABLE mem_content_bit_vector : BIT_VECTOR(31 DOWNTO 0) := (OTHERS => '0');

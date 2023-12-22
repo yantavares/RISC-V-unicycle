@@ -49,9 +49,7 @@ BEGIN
           zero <= '0';
 
         WHEN "0101" =>  -- SLL
-          -- Set to zero if shift amount is too large
-          Z <= (others => '0') WHEN TO_INTEGER(SIGNED(B)) >= A'LENGTH ELSE
-              STD_LOGIC_VECTOR(SIGNED(A) SLL TO_INTEGER(SIGNED(B)));
+          Z <= STD_LOGIC_VECTOR(SIGNED(A) SLL TO_INTEGER(SIGNED(B)));
           zero <= '0';
         
         WHEN "0110" => -- SRL
@@ -126,7 +124,7 @@ BEGIN
 
         WHEN OTHERS =>
           report "Invalid opcode" & to_string(opcode) severity error;
-          Z <= "00000000000000000000000000000000";
+          Z <= x"00000000";
           zero <= '0';
 
       END CASE;
