@@ -94,6 +94,7 @@ ARCHITECTURE behavior OF RV32_Processor IS
   COMPONENT NewXREG
     PORT (
       wren : IN STD_LOGIC;
+      clk : IN STD_LOGIC;
       rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
       rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
       rd : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
@@ -237,6 +238,7 @@ BEGIN
   mem_reg_inst16 : NewXREG
     PORT MAP (
       wren => regWrite_signal,
+      clk => clock,
       rs1 => instruction_signal(19 DOWNTO 15),
       rs2 => instruction_signal(24 DOWNTO 20),
       rd => instruction_signal(11 DOWNTO 7),
