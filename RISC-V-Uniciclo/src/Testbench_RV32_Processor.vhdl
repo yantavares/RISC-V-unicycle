@@ -34,7 +34,7 @@ ARCHITECTURE behavior OF Testbench_RV32_Processor IS
     signal immediate : std_logic_vector(31 downto 0);
 
     -- Clock period definition
-    constant clock_period : time := 10 ns;
+    constant clock_period : time := 100 ns;
 
 BEGIN 
     -- Instantiate the Unit Under Test (UUT)
@@ -67,7 +67,7 @@ BEGIN
     stimulus: process
     begin
 
-        wait for 23 * clock_period;  -- Wait for X clock cycles
+        wait for 200 * clock_period;  -- Wait for X clock cycles
 
         -- End of simulation
         test_finished <= true;
