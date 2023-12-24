@@ -28,8 +28,8 @@ begin
               end if;
           end if;
 
-          ro1 <= X"00000000" when rs1 = "00000" else registers_array(to_integer(unsigned(rs1))); --essa e a proxima linha tambem grantem que o reg0 sempre vai ser 0
-          ro2 <= X"00000000" when rs2 = "00000" else registers_array(to_integer(unsigned(rs2))); --para fornecer uma garantia extra do tratamento do reg0
+          ro1 <= registers_array(to_integer(unsigned(rs1))); --essa e a proxima linha tambem grantem que o reg0 sempre vai ser 0
+          ro2 <= registers_array(to_integer(unsigned(rs2))); --para fornecer uma garantia extra do tratamento do reg0
 
     end process;
 end hardware;
