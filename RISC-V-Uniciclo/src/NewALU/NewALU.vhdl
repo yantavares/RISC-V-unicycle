@@ -118,7 +118,6 @@ BEGIN
 
       WHEN OTHERS =>
         report "Invalid opcode" & to_string(opcode) severity error;
-        return;
 
       END CASE;
   END PROCESS;

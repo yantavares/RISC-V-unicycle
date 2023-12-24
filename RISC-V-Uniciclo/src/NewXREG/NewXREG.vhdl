@@ -1,46 +1,35 @@
-LIBRARY ieee;
-USE ieee.numeric_std.all;
-USE ieee.std_logic_1164.all;
 
-LIBRARY work;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all; 
 
-ENTITY NewXREG IS
-  PORT (
-    wren : IN STD_LOGIC;
-    rs1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-    rs2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-    rd : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
-    data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    ro1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    ro2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
-END NewXREG;
+entity NewXREG is
+    generic (WSIZE : natural := 32);
+    port (
+        wren : in std_logic;
+        rs1, rs2, rd : in std_logic_vector(4 downto 0);
+        data : in std_logic_vector(WSIZE-1 downto 0);
+        ro1, ro2 : out std_logic_vector(WSIZE-1 downto 0)
+    );
+end NewXREG;
 
-ARCHITECTURE behavior OF NewXREG IS
 
-CONSTANT mem_depth : NATURAL := 32;
-CONSTANT mem_width : NATURAL := 32;
-TYPE mem_type IS ARRAY (0 TO mem_depth - 1)
-    OF STD_LOGIC_VECTOR(mem_width - 1 DOWNTO 0);
+architecture hardware of NewXREG is
+    type array_of_register is array (0 to 31) of std_logic_vector(WSIZE-1 downto 0); 
+    signal registers_array : array_of_register := (others => (others => '0'));  --todos os regs sao inicializados com o valor 0 no formato de array de 32 bits
 
-SIGNAL address1_signal : INTEGER := 0;
-SIGNAL address2_signal : INTEGER := 0;
-SIGNAL write_address_signal : INTEGER := 0;
+begin
 
-SIGNAL breg : mem_type := (x"00000000", others => (others => '0'));
+    process(wren, rd, rs1, rs2)
+    begin
 
-BEGIN
+          if wren = '1' then
+              if to_integer(unsigned(rd)) /= 0 then registers_array(to_integer(unsigned(rd))) <= data; --XREG[rd] = data, apenas se rd não for 0
+              end if;
+          end if;
 
-  address1_signal <= TO_INTEGER(UNSIGNED(rs1));
-  address2_signal <= TO_INTEGER(UNSIGNED(rs2));
-  write_address_signal <= TO_INTEGER(UNSIGNED(rd));
-  ro1 <= breg(address1_signal);
-  ro2 <= breg(address2_signal);
+          ro1 <= X"00000000" when rs1 = "00000" else registers_array(to_integer(unsigned(rs1))); --essa e a proxima linha tambem grantem que o reg0 sempre vai ser 0
+          ro2 <= X"00000000" when rs2 = "00000" else registers_array(to_integer(unsigned(rs2))); --para fornecer uma garantia extra do tratamento do reg0
 
-  PROCESS (wren, write_address_signal)
-  BEGIN
-    IF (wren = '1') AND (write_address_signal /= 0) THEN
-      breg(write_address_signal) <= data;
-    END IF;
-  END PROCESS;
-
-END behavior;
+    end process;
+end hardware;

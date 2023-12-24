@@ -43,7 +43,7 @@ SIGNAL mem : mem_type := init_mem_data;
 
 BEGIN
 
-    process(we, re, address, datain) -- process to write and read
+    process(we, re) -- process to write and read
     begin
         if we = '1' then mem(to_integer(unsigned(address))) <= datain; -- writes
         end if;
