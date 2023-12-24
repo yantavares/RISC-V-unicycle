@@ -16,14 +16,10 @@ ARCHITECTURE bdf_type OF pc IS
 
 BEGIN
 
-  PROCESS(clk) BEGIN
-    IF RISING_EDGE(clk) THEN
-      IF rst = '1' THEN
-        addr_out <= x"00000000";
-      ELSE
-        addr_out <= addr_in;
-      END IF;
-    END IF;
-  END PROCESS;
+  IF rst = '1' THEN
+    addr_out <= x"00000000";
+  ELSE
+    addr_out <= addr_in;
+  END IF;   
 
 END bdf_type;
