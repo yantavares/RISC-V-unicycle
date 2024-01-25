@@ -3,7 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
-Repository dedicated to the codes of the course 'Organization and Architecture of Computers' at UnB (2023/2).
+Repository for RISC-V Unicycle Processor Implementation in VHDL and Course Material for 'Organization and Architecture of Computers' at UnB (2023/2)
 
 The course is based on the RISC-V architecture, and the projects are done in Assembly, Python, and VHDL.
 
@@ -30,7 +30,7 @@ Starting from Project 3, all were done in VHDL. To simulate the projects, I reco
 [![GitHub stars](https://img.shields.io/github/stars/yantavares/OAC)](https://github.com/yantavares/OAC)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
-Repositório destinado aos códigos da disciplina de Organização e Arquitetura de Computadores da UnB (2023/2).
+Repositório destinado à implementação de Processador Uniciclo RISC-V em VHDL e Material do Curso 'Organização e Arquitetura de Computadores' na UnB (2023/2)
 
 A disciplina se baseia na arquitetura RISC-V, e os projetos são feitos em Assembly, Python e VHDL.
 
